@@ -1,0 +1,76 @@
+import com.nkuppan.giphybrowser.buildsrc.Libs
+import com.nkuppan.giphybrowser.buildsrc.Versions
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
+}
+android {
+    compileSdk Versions.compileSdk
+
+    defaultConfig {
+
+        applicationId "com.nkuppan.giphybrowser"
+
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner Libs.AndroidX.Test.instrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    implementation project(":core")
+    implementation project(":browser")
+
+    implementation(Libs.Google.Hilt.android)
+    kapt(Libs.Google.Hilt.compiler)
+    kapt(Libs.AndroidX.Hilt.compiler)
+
+    /**
+     * Android Testing Related Library
+     */
+    debugImplementation(Libs.AndroidX.Fragment.test)
+
+    androidTestImplementation(Libs.AndroidX.Test.JUnit.ktx)
+    androidTestImplementation(Libs.AndroidX.Test.Espresso.core)
+    androidTestImplementation(Libs.AndroidX.Test.Espresso.contrib)
+    androidTestImplementation(Libs.AndroidX.Navigation.test)
+    androidTestImplementation(Libs.AndroidX.Test.runner)
+    androidTestImplementation(Libs.AndroidX.Test.rules)
+    androidTestImplementation(Libs.AndroidX.Core.test)
+    androidTestImplementation(Libs.Google.truth)
+
+    //Android JUnit test cases for API
+    testImplementation(Libs.Square.mockWebServer)
+    //for unit testing
+    testImplementation(Libs.AndroidX.Test.JUnit.core)
+    testImplementation(Libs.AndroidX.Core.test)
+    testImplementation(Libs.Kotlin.Coroutines.test)
+    testImplementation(Libs.Mockito.core)
+}

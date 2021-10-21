@@ -1,0 +1,4 @@
+include ':app'
+include ':core'
+include ':browser'
+rootProject.name = "giphy-browser"

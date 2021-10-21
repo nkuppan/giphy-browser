@@ -1,0 +1,13 @@
+package com.nkuppan.giphybrowser.browser.ui.viewmodel
+
+import android.app.Application
+import com.nkuppan.giphybrowser.browser.repository.GiphyRepository
+import com.nkuppan.giphybrowser.browser.model.Type
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+@HiltViewModel
+class StickersSearchViewModel @Inject constructor(
+    aApplication: Application,
+    repository: GiphyRepository
+) : GiphyBrowserListViewModel(aApplication, Type.STICKERS, repository)

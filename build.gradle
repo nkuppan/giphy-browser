@@ -1,0 +1,37 @@
+import com.nkuppan.giphybrowser.buildsrc.Libs
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath Libs.androidGradlePlugin
+        classpath Libs.Kotlin.gradlePlugin
+
+        /**
+         * Navigation component Gradle plugin to support navigation graph
+         */
+        classpath Libs.AndroidX.Navigation.safeArgsGradlePlugin
+
+        /**
+         * Google Hilt library Gradle plugin to support dependency injection
+         */
+        classpath Libs.Google.Hilt.androidGradlePlugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+    /**
+     * Adding Kotlin Lint Gradle tasks to all modules in the projects to check
+     */
+    apply from: "$rootDir/ktlint.gradle"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

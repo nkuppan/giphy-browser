@@ -1,0 +1,63 @@
+import com.nkuppan.giphybrowser.buildsrc.Libs
+import com.nkuppan.giphybrowser.buildsrc.Versions
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+def apikeyPropertiesFile = rootProject.file("keys.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
+android {
+    compileSdk Versions.compileSdk
+    defaultConfig {
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+        testInstrumentationRunner Libs.AndroidX.Test.instrumentationRunner
+
+        buildConfigField "String", "GIPHY_API_KEY", apikeyProperties['GIPHY_API_KEY']
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    api(Libs.Kotlin.stdlib)
+    api(Libs.Kotlin.Coroutines.core)
+    api(Libs.Kotlin.Coroutines.android)
+
+    api(Libs.AndroidX.Core.ktx)
+    api(Libs.AndroidX.appCompat)
+    api(Libs.AndroidX.constraintLayout)
+    api(Libs.AndroidX.recyclerView)
+    api(Libs.AndroidX.swipeRefreshLayout)
+
+    api(Libs.AndroidX.Activity.ktx)
+    api(Libs.AndroidX.Fragment.ktx)
+
+    api(Libs.AndroidX.Lifecycle.liveDataKtx)
+    api(Libs.AndroidX.Lifecycle.viewModelKtx)
+
+    api(Libs.AndroidX.Navigation.fragmentKtx)
+    api(Libs.AndroidX.Navigation.uiKtx)
+
+    api(Libs.Google.material)
+
+    api(Libs.Square.okHttp)
+    api(Libs.Square.Retrofit.retrofit)
+    api(Libs.Square.Retrofit.gsonConverter)
+
+    testImplementation(Libs.AndroidX.Test.runner)
+    androidTestImplementation(Libs.AndroidX.Test.JUnit.ktx)
+    androidTestImplementation(Libs.AndroidX.Test.Espresso.core)
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainNavGraph"
+    app:startDestination="@id/giphy_search">
+
+    <fragment
+        android:id="@+id/giphy_search"
+        android:name="com.nkuppan.giphybrowser.ui.fragment.GiphySearchFragment"
+        android:label="GiphySearchFragment"
+        tools:layout="@layout/fragment_giphy_search">
+
+        <action
+            android:id="@+id/action_giphy_search_to_giphy_browse_list"
+            app:destination="@id/giphy_browse_list" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/giphy_browse_list"
+        android:name="com.nkuppan.giphybrowser.browser.ui.fragment.GiphyBrowserListFragment"
+        android:label="GiphySearchFragment"
+        tools:layout="@layout/fragment_giphy_browse_list">
+
+        <argument
+            android:name="query"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="type"
+            app:argType="com.nkuppan.giphybrowser.browser.model.Type" />
+
+        <action
+            android:id="@+id/action_giphy_browse_list_to_giphyImageFragment"
+            app:destination="@id/giphyImageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/giphyImageFragment"
+        android:name="com.nkuppan.giphybrowser.browser.ui.fragment.GiphyImageFragment"
+        android:label="GiphyImageFragment"
+        tools:layout="@layout/fragment_giphy_image">
+
+        <argument
+            android:name="image"
+            app:argType="com.nkuppan.giphybrowser.core.domain.model.GiphyImage"
+            app:nullable="false" />
+    </fragment>
+
+</navigation>
