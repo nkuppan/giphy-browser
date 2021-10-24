@@ -8,10 +8,9 @@ import com.nkuppan.giphybrowser.core.domain.model.GiphyImage
 
 class GiphyPagingSource(
     private val type: Type,
+    private val query: String,
     private val repository: GiphyRepository
 ) : PagingSource<Int, GiphyImage>() {
-
-    var query: String = ""
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GiphyImage> {
         val page = params.key ?: 0
@@ -36,6 +35,6 @@ class GiphyPagingSource(
     }
 
     override fun getRefreshKey(state: PagingState<Int, GiphyImage>): Int? {
-        return state.anchorPosition
+        return null
     }
 }

@@ -72,7 +72,8 @@ class GiphyBrowserListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        giphySearchViewModel.updateQuery(queryString)
+        viewModel.updateQuery(queryString)
+        giphySearchViewModel.refreshSearchWithQuery(queryString)
         setupViewModel()
         setupSwipeRefresh()
         setupRecyclerView()

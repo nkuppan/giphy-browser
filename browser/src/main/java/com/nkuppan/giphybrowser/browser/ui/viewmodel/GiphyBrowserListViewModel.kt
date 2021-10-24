@@ -13,22 +13,18 @@ import com.nkuppan.giphybrowser.browser.utils.PAGE_SIZE
 import com.nkuppan.giphybrowser.core.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.core.ui.viewmodel.BaseViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 open class GiphyBrowserListViewModel(
     aApplication: Application,
-    aType: Type,
-    aRepository: GiphyRepository
+    private val aType: Type,
+    private val aRepository: GiphyRepository
 ) : BaseViewModel(aApplication) {
 
     private var queryString: String = ""
 
-    private var giphyPagingSource: GiphyPagingSource = GiphyPagingSource(
-        aType, aRepository
-    )
-
-    val searchResult: Flow<PagingData<GiphyImage>> = Pager(PagingConfig(PAGE_SIZE)) {
-        giphyPagingSource
-    }.flow.cachedIn(viewModelScope)
+    var searchResult: Flow<PagingData<GiphyImage>> = flow {}
+        private set
 
     fun refreshSearchWithQuery(aQuery: String): Boolean {
 
@@ -40,12 +36,12 @@ open class GiphyBrowserListViewModel(
 
         queryString = trimmedQuery
 
-        giphyPagingSource.query = queryString
+        searchResult = Pager(PagingConfig(PAGE_SIZE)) {
+            GiphyPagingSource(
+                aType, queryString, aRepository
+            )
+        }.flow.cachedIn(viewModelScope)
 
         return true
-    }
-
-    fun updateQuery(aQuery: String) {
-        giphyPagingSource.query = aQuery
     }
 }
