@@ -18,11 +18,13 @@ class SearchPageValidatorKtTest {
     @Test
     fun `Sending less than 3 character length query string`() {
         assertThat("a".isValidQueryString()).isFalse()
+        assertThat("ab".isValidQueryString()).isFalse()
     }
 
     @Test
     fun `Sending less than 3 character length along with empty space query string`() {
         assertThat("a  ".isValidQueryString()).isFalse()
+        assertThat("ab  ".isValidQueryString()).isFalse()
     }
 
     @Test

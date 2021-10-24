@@ -9,14 +9,15 @@ import androidx.paging.cachedIn
 import com.nkuppan.giphybrowser.browser.data.GiphyPagingSource
 import com.nkuppan.giphybrowser.browser.model.Type
 import com.nkuppan.giphybrowser.browser.repository.GiphyRepository
+import com.nkuppan.giphybrowser.browser.utils.PAGE_SIZE
 import com.nkuppan.giphybrowser.core.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.core.ui.viewmodel.BaseViewModel
 import kotlinx.coroutines.flow.Flow
 
 open class GiphyBrowserListViewModel(
     aApplication: Application,
-    private val aType: Type,
-    private val aRepository: GiphyRepository
+    aType: Type,
+    aRepository: GiphyRepository
 ) : BaseViewModel(aApplication) {
 
     private var queryString: String = ""
@@ -25,10 +26,7 @@ open class GiphyBrowserListViewModel(
         aType, aRepository
     )
 
-    val searchResult: Flow<PagingData<GiphyImage>> = Pager(
-        //TODO move this hardcoded value to constants
-        PagingConfig(pageSize = 20)
-    ) {
+    val searchResult: Flow<PagingData<GiphyImage>> = Pager(PagingConfig(PAGE_SIZE)) {
         giphyPagingSource
     }.flow.cachedIn(viewModelScope)
 

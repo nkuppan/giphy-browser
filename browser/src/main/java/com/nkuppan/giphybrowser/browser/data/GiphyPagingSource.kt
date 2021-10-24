@@ -16,7 +16,7 @@ class GiphyPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GiphyImage> {
         val page = params.key ?: 0
         val pageSize = params.loadSize
-        val (success, news) = when (type) {
+        val (success, response) = when (type) {
             Type.GIF -> repository.getGifResponse(
                 query, page * pageSize, pageSize
             )
@@ -26,12 +26,12 @@ class GiphyPagingSource(
         }
         return if (success) {
             LoadResult.Page(
-                data = news,
+                data = response,
                 prevKey = if (page == 0) null else page.dec(),
-                nextKey = if (news.isEmpty()) null else page.inc()
+                nextKey = if (response.isEmpty()) null else page.inc()
             )
         } else {
-            LoadResult.Error(RuntimeException("Failed to fetch news with page = $page and page size = $pageSize"))
+            LoadResult.Error(RuntimeException("Failed to fetch response with page = $page and page size = $pageSize"))
         }
     }
 
