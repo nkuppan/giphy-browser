@@ -41,6 +41,7 @@ dependencies {
     kapt(Libs.Google.Hilt.compiler)
     kapt(Libs.AndroidX.Hilt.compiler)
 
+    testImplementation(Libs.Google.truth)
     testImplementation(Libs.AndroidX.Test.runner)
     androidTestImplementation(Libs.AndroidX.Test.JUnit.ktx)
     androidTestImplementation(Libs.AndroidX.Test.Espresso.core)

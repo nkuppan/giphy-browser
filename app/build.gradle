@@ -69,6 +69,7 @@ dependencies {
     //Android JUnit test cases for API
     testImplementation(Libs.Square.mockWebServer)
     //for unit testing
+    testImplementation(Libs.Google.truth)
     testImplementation(Libs.AndroidX.Test.JUnit.core)
     testImplementation(Libs.AndroidX.Core.test)
     testImplementation(Libs.Kotlin.Coroutines.test)

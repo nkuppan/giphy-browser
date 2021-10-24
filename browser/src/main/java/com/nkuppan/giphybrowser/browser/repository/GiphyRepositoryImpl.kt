@@ -5,18 +5,22 @@ import com.nkuppan.giphybrowser.core.BuildConfig
 import com.nkuppan.giphybrowser.core.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.core.network.GiphyApiService
 import com.nkuppan.giphybrowser.core.network.model.GiphyImageDtoMapper
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.awaitResponse
 
 class GiphyRepositoryImpl(
     private val service: GiphyApiService,
-    private val mapper: GiphyImageDtoMapper
+    private val mapper: GiphyImageDtoMapper,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GiphyRepository {
 
     override suspend fun getGifResponse(
         query: String,
         page: Int,
         pageSize: Int
-    ): Pair<Boolean, List<GiphyImage>> {
+    ): Pair<Boolean, List<GiphyImage>> = withContext(dispatcher) {
         val response = try {
             val apiKey = BuildConfig.GIPHY_API_KEY
             val response = service.searchGiphyGifs(
@@ -35,14 +39,14 @@ class GiphyRepositoryImpl(
             emptyList()
         }
 
-        return response.isNotEmpty() to mapper.toDomainList(response)
+        return@withContext response.isNotEmpty() to mapper.toDomainList(response)
     }
 
     override suspend fun getStickersResponse(
         query: String,
         page: Int,
         pageSize: Int
-    ): Pair<Boolean, List<GiphyImage>> {
+    ): Pair<Boolean, List<GiphyImage>> = withContext(dispatcher) {
         val response = try {
             val apiKey = BuildConfig.GIPHY_API_KEY
             val response = service.searchGiphyStickers(
@@ -61,7 +65,7 @@ class GiphyRepositoryImpl(
             emptyList()
         }
 
-        return response.isNotEmpty() to mapper.toDomainList(response)
+        return@withContext response.isNotEmpty() to mapper.toDomainList(response)
     }
 
     companion object {
