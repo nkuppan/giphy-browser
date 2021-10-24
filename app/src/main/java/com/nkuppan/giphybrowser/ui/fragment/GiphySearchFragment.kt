@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.nkuppan.giphybrowser.browser.R
 import com.nkuppan.giphybrowser.browser.model.Type
 import com.nkuppan.giphybrowser.browser.ui.viewmodel.SearchViewModel
 import com.nkuppan.giphybrowser.core.extension.EventObserver
 import com.nkuppan.giphybrowser.core.extension.autoCleared
 import com.nkuppan.giphybrowser.core.extension.clearFocusAndHideKeyboard
+import com.nkuppan.giphybrowser.core.extension.showSnackBarMessage
 import com.nkuppan.giphybrowser.core.ui.fragment.BaseFragment
 import com.nkuppan.giphybrowser.databinding.FragmentGiphySearchBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,6 +45,8 @@ class GiphySearchFragment : BaseFragment() {
                 return@setOnEditorActionListener if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     if (viewModel.processQuery()) {
                         clearFocusAndHideKeyboard()
+                    } else {
+                        binding.root.showSnackBarMessage(R.string.enter_valid_query_string)
                     }
                     true
                 } else {

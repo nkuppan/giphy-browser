@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
-import com.google.android.material.snackbar.Snackbar
 import com.nkuppan.giphybrowser.browser.R
 import com.nkuppan.giphybrowser.browser.databinding.FragmentGiphyBrowseListBinding
 import com.nkuppan.giphybrowser.browser.model.Type
@@ -23,12 +22,11 @@ import com.nkuppan.giphybrowser.browser.ui.viewmodel.StickersSearchViewModel
 import com.nkuppan.giphybrowser.core.extension.EventObserver
 import com.nkuppan.giphybrowser.core.extension.autoCleared
 import com.nkuppan.giphybrowser.core.extension.clearFocusAndHideKeyboard
+import com.nkuppan.giphybrowser.core.extension.showSnackBarMessage
 import com.nkuppan.giphybrowser.core.ui.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class GiphyBrowserListFragment : BaseFragment() {
@@ -38,6 +36,8 @@ class GiphyBrowserListFragment : BaseFragment() {
     private val queryString: String by lazy { args.query }
 
     private val type: Type by lazy { args.type }
+
+    private var binding: FragmentGiphyBrowseListBinding by autoCleared()
 
     private val giphySearchViewModel: GiphyBrowserListViewModel by lazy {
         when (type) {
@@ -52,17 +52,13 @@ class GiphyBrowserListFragment : BaseFragment() {
 
     private val adapter = GiphyListAdapter { giphyImage ->
         lifecycleScope.launch {
-            withContext(Dispatchers.Main) {
-                findNavController().navigate(
-                    GiphyBrowserListFragmentDirections.actionGiphyBrowseListToGiphyImageFragment(
-                        giphyImage
-                    )
+            findNavController().navigate(
+                GiphyBrowserListFragmentDirections.actionGiphyBrowseListToGiphyImageFragment(
+                    giphyImage
                 )
-            }
+            )
         }
     }
-
-    private var binding: FragmentGiphyBrowseListBinding by autoCleared()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,6 +86,8 @@ class GiphyBrowserListFragment : BaseFragment() {
                 return@setOnEditorActionListener if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     if (viewModel.processQuery()) {
                         clearFocusAndHideKeyboard()
+                    } else {
+                        binding.root.showSnackBarMessage(R.string.enter_valid_query_string)
                     }
                     true
                 } else {
@@ -140,11 +138,7 @@ class GiphyBrowserListFragment : BaseFragment() {
                     binding.retry.isVisible = adapter.itemCount == 0
                     binding.progressIndicator.hide()
                     if (adapter.itemCount > 0) {
-                        Snackbar.make(
-                            binding.root,
-                            R.string.failed_to_refresh_giphy,
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        binding.root.showSnackBarMessage(R.string.failed_to_refresh_giphy)
                     }
                 }
             }
