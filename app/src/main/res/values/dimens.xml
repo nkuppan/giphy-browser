@@ -2,4 +2,6 @@
 <resources>
     <dimen name="search_min_width">300dp</dimen>
     <dimen name="search_margin">16dp</dimen>
+    <dimen name="error_image_size">60dp</dimen>
+    <dimen name="no_elevation">0dp</dimen>
 </resources>

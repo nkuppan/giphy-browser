@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.nkuppan.giphybrowser.browser.ui.viewmodel.SearchViewModel" />
+            type="com.nkuppan.giphybrowser.presentation.search.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,0 +1,47 @@
+import com.nkuppan.giphybrowser.buildsrc.Libs
+import com.nkuppan.giphybrowser.buildsrc.Versions
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk Versions.compileSdk
+    defaultConfig {
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+        testInstrumentationRunner Libs.AndroidX.Test.instrumentationRunner
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+}
+dependencies {
+    implementation project(":core")
+    implementation project(":domain")
+
+    implementation(Libs.Glide.core)
+    annotationProcessor(Libs.Glide.compiler)
+
+    implementation(Libs.AndroidX.Paging.runtime)
+
+    implementation(Libs.Google.Hilt.android)
+    kapt(Libs.Google.Hilt.compiler)
+    kapt(Libs.AndroidX.Hilt.compiler)
+
+    testImplementation(Libs.Google.truth)
+    testImplementation(Libs.AndroidX.Test.runner)
+    androidTestImplementation(Libs.AndroidX.Test.JUnit.ktx)
+    androidTestImplementation(Libs.AndroidX.Test.Espresso.core)
+}

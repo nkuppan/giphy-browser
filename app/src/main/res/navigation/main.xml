@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/giphy_search"
-        android:name="com.nkuppan.giphybrowser.ui.fragment.GiphySearchFragment"
+        android:name="com.nkuppan.giphybrowser.presentation.search.GiphySearchFragment"
         android:label="GiphySearchFragment"
         tools:layout="@layout/fragment_giphy_search">
 
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/giphy_browse_list"
-        android:name="com.nkuppan.giphybrowser.browser.ui.fragment.GiphyBrowserListFragment"
+        android:name="com.nkuppan.giphybrowser.presentation.searchlist.GiphyBrowserListFragment"
         android:label="GiphySearchFragment"
         tools:layout="@layout/fragment_giphy_browse_list">
 
@@ -31,7 +31,7 @@
 
         <argument
             android:name="type"
-            app:argType="com.nkuppan.giphybrowser.browser.model.Type" />
+            app:argType="com.nkuppan.giphybrowser.domain.model.Type" />
 
         <action
             android:id="@+id/action_giphy_browse_list_to_giphyImageFragment"
@@ -40,13 +40,13 @@
 
     <fragment
         android:id="@+id/giphyImageFragment"
-        android:name="com.nkuppan.giphybrowser.browser.ui.fragment.GiphyImageFragment"
+        android:name="com.nkuppan.giphybrowser.presentation.searchdetails.GiphyImageFragment"
         android:label="GiphyImageFragment"
         tools:layout="@layout/fragment_giphy_image">
 
         <argument
             android:name="image"
-            app:argType="com.nkuppan.giphybrowser.core.domain.model.GiphyImage"
+            app:argType="com.nkuppan.giphybrowser.domain.model.GiphyImage"
             app:nullable="false" />
     </fragment>
 

@@ -1,10 +1,10 @@
 package com.nkuppan.giphybrowser
 
 import com.google.common.truth.Truth.assertThat
-import com.nkuppan.giphybrowser.browser.repository.GiphyRepository
-import com.nkuppan.giphybrowser.browser.repository.GiphyRepositoryImpl
-import com.nkuppan.giphybrowser.core.network.GiphyApiService
-import com.nkuppan.giphybrowser.core.network.model.GiphyImageDtoMapper
+import com.nkuppan.giphybrowser.domain.network.GiphyApiService
+import com.nkuppan.giphybrowser.domain.network.model.GiphyImageDtoMapper
+import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
+import com.nkuppan.giphybrowser.domain.repository.GiphyRepositoryImpl
 import com.nkuppan.giphybrowser.utils.MockResponseFileReader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

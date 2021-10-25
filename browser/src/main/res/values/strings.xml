@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="retry">Retry</string>
-    <string name="content_giphy_image">Giphy Image</string>
-    <string name="failed_to_refresh_giphy">Failed to load giphy images</string>
-    <string name="enter_valid_query_string">Enter a valid query</string>
-</resources>

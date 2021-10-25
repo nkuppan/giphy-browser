@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2611111111111111" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/activity_launcher.xml" value="0.2857789855072464" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/activity_main.xml" value="0.2857789855072464" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/fragment_giphy_browse_list.xml" value="0.11388888888888889" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/core/src/main/res/drawable/ic_search.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/app/src/main/res/layout/activity_launcher.xml" value="0.536" />
         <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/app/src/main/res/layout/activity_main.xml" value="0.1743659420289855" />
         <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/app/src/main/res/layout/fragment_giphy_search.xml" value="0.2" />

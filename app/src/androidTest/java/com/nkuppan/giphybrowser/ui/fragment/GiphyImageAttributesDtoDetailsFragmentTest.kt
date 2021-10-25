@@ -9,9 +9,9 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
 import com.nkuppan.giphybrowser.R
-import com.nkuppan.giphybrowser.browser.ui.adapter.GiphyListViewHolder
-import com.nkuppan.giphybrowser.ui.activity.MainActivity
 import com.nkuppan.giphybrowser.browser.util.MatcherUtil.childAtPosition
+import com.nkuppan.giphybrowser.presentation.MainActivity
+import com.nkuppan.giphybrowser.presentation.searchlist.GiphyListViewHolder
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.junit.Rule

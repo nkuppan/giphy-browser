@@ -1,9 +1,9 @@
 package com.nkuppan.giphybrowser.di
 
-import com.nkuppan.giphybrowser.browser.repository.GiphyRepository
-import com.nkuppan.giphybrowser.browser.repository.GiphyRepositoryImpl
-import com.nkuppan.giphybrowser.core.network.GiphyApiService
-import com.nkuppan.giphybrowser.core.network.model.GiphyImageDtoMapper
+import com.nkuppan.giphybrowser.domain.network.GiphyApiService
+import com.nkuppan.giphybrowser.domain.network.model.GiphyImageDtoMapper
+import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
+import com.nkuppan.giphybrowser.domain.repository.GiphyRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

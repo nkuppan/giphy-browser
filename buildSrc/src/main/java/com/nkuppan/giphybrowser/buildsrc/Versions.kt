@@ -5,7 +5,7 @@ object Versions {
     const val minSdk = 21
     const val targetSdk = 30
 
-    const val androidGradlePlugin = "7.0.2"
+    const val androidGradlePlugin = "7.0.3"
     const val ktlint = "0.40.0"
     const val glide = "4.12.0"
 
@@ -44,6 +44,7 @@ object Versions {
         const val material = "1.5.0-alpha01"
         const val hilt = "2.38.1"
     }
+
     object Square {
         const val okHttp = "4.9.1"
         const val retrofit = "2.9.0"
