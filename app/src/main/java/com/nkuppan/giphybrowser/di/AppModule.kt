@@ -4,6 +4,8 @@ import com.nkuppan.giphybrowser.domain.network.GiphyApiService
 import com.nkuppan.giphybrowser.domain.network.model.GiphyImageDtoMapper
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepositoryImpl
+import com.nkuppan.giphybrowser.domain.usecase.GifSearchUseCase
+import com.nkuppan.giphybrowser.domain.usecase.StickerSearchUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,5 +62,21 @@ class AppModule {
             service,
             mapper
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideGiphyGifSearchUseCase(
+        aGiphyRepository: GiphyRepository
+    ): GifSearchUseCase {
+        return GifSearchUseCase(aGiphyRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGiphyStickerSearchUseCase(
+        aGiphyRepository: GiphyRepository
+    ): StickerSearchUseCase {
+        return StickerSearchUseCase(aGiphyRepository)
     }
 }

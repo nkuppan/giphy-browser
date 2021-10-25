@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2611111111111111" />
-        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/activity_launcher.xml" value="0.2857789855072464" />
-        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/activity_main.xml" value="0.2857789855072464" />
-        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/fragment_giphy_browse_list.xml" value="0.11388888888888889" />
-        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/core/src/main/res/drawable/ic_search.xml" value="0.15648148148148147" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/app/src/main/res/layout/activity_launcher.xml" value="0.536" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/app/src/main/res/layout/activity_main.xml" value="0.1743659420289855" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/app/src/main/res/layout/fragment_giphy_search.xml" value="0.2" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/browser/src/main/res/drawable/ic_error.xml" value="0.24537037037037038" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/browser/src/main/res/drawable/image_place_holder.xml" value="0.14010416666666667" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/browser/src/main/res/layout/fragment_giphy_browse_list.xml" value="0.23489583333333333" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/browser/src/main/res/layout/fragment_giphy_image.xml" value="0.1743659420289855" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/browser/src/main/res/layout/list_item_giphy.xml" value="0.23489583333333333" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/browser/src/main/res/layout/widget_search_container.xml" value="0.22242817423540315" />
-        <entry key="..\:/Users/nkuppan/Documents/Samples/giphy-browser/core/src/main/res/drawable/ic_back_navigation.xml" value="0.24537037037037038" />
-      </map>
-    </option>
-  </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
