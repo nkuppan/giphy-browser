@@ -29,9 +29,5 @@ allprojects {
     /**
      * Adding Kotlin Lint Gradle tasks to all modules in the projects to check
      */
-    apply from: "$rootDir/ktlint.gradle"
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    apply from: "$rootDir/ktlint.gradle.kts"
 }

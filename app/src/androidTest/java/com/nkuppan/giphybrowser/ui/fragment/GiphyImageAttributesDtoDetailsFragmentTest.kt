@@ -1,6 +1,5 @@
 package com.nkuppan.giphybrowser.ui.fragment
 
-
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -10,8 +9,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
 import com.nkuppan.giphybrowser.R
 import com.nkuppan.giphybrowser.browser.ui.adapter.GiphyListViewHolder
-import com.nkuppan.giphybrowser.ui.activity.MainActivity
 import com.nkuppan.giphybrowser.browser.util.MatcherUtil.childAtPosition
+import com.nkuppan.giphybrowser.ui.activity.MainActivity
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.junit.Rule

@@ -55,13 +55,16 @@ class GiphySearchFragment : BaseFragment() {
             }
         }
 
-        viewModel.searchThisQuery.observe(viewLifecycleOwner, EventObserver {
-            findNavController().navigate(
-                GiphySearchFragmentDirections.actionGiphySearchToGiphyBrowseList(
-                    it,
-                    if (binding.gif.isChecked) Type.GIF else Type.STICKERS
+        viewModel.searchThisQuery.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                findNavController().navigate(
+                    GiphySearchFragmentDirections.actionGiphySearchToGiphyBrowseList(
+                        it,
+                        if (binding.gif.isChecked) Type.GIF else Type.STICKERS
+                    )
                 )
-            )
-        })
+            }
+        )
     }
 }

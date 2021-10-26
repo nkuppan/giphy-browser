@@ -1,13 +1,11 @@
 package com.nkuppan.giphybrowser.core.extension
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
-
 
 /**
  * A lazy property that gets cleaned up when the activity is destroyed.

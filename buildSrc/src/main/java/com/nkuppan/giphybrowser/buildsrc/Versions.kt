@@ -6,7 +6,7 @@ object Versions {
     const val targetSdk = 30
 
     const val androidGradlePlugin = "7.0.2"
-    const val ktlint = "0.40.0"
+    const val ktlint = "0.42.1"
     const val glide = "4.12.0"
 
     object Kotlin {

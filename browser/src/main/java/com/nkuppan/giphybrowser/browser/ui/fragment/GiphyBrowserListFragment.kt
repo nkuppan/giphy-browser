@@ -97,11 +97,14 @@ class GiphyBrowserListFragment : BaseFragment() {
             }
         }
 
-        viewModel.searchThisQuery.observe(viewLifecycleOwner, EventObserver {
-            if (giphySearchViewModel.refreshSearchWithQuery(it)) {
-                adapter.refresh()
+        viewModel.searchThisQuery.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                if (giphySearchViewModel.refreshSearchWithQuery(it)) {
+                    adapter.refresh()
+                }
             }
-        })
+        )
     }
 
     private fun setupViewModel() {

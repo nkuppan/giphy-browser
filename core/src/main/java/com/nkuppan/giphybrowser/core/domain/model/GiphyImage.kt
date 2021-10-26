@@ -14,7 +14,6 @@ data class GiphyImage(
     val thumbnail: GiphyImageAttributes
 ) : Serializable
 
-
 /**
  * Converted Giphy image attributes response to UI model
  */

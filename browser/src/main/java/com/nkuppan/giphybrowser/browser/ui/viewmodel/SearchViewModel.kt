@@ -8,7 +8,6 @@ import com.nkuppan.giphybrowser.browser.utils.isValidQueryString
 import com.nkuppan.giphybrowser.core.extension.Event
 import com.nkuppan.giphybrowser.core.ui.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import retrofit2.http.Query
 import javax.inject.Inject
 
 @HiltViewModel
