@@ -37,4 +37,8 @@
         </item>
     </style>
 
+    <style name="AppTheme.LauncherTheme">
+        <item name="android:windowBackground">@drawable/launcher_bg</item>
+    </style>
+
 </resources>

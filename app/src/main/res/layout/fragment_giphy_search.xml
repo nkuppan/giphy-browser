@@ -47,8 +47,8 @@
 
         <ImageView
             android:id="@+id/giphy_bottom_logo"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/launcher_bottom_logo_width"
+            android:layout_height="@dimen/launcher_bottom_logo_height"
             android:layout_marginBottom="@dimen/margin_16dp"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
