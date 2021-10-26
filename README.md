@@ -1,6 +1,6 @@
 # Giphy Browser
 
-[![GitHub Actions](https://github.com/naveenkumarn27/giphy-browser/.github/workflows/workflow.yml/badge.svg)](.github/workflows/workflow.yml)
+[![GitHub Actions](https://github.com/naveenkumarn27/giphy-browser/workflows/workflow/badge.svg)](.github/workflows/workflow.yml)
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 GIPHY Browser is a **work-in-progress** Android app for viewing gif's and stickers using GIPHY api.
