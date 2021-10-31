@@ -10,7 +10,7 @@ It displays the latest gif's and stickers depending on the search query. It make
 <br>
 
 | Search | Search List | Image | Dark Theme |
-| ------ | ----- | ------ |
+| ------ | ----- | ------ | ------ |
 | ![Search](art/screenshots/screenshot-1.png) | ![Search List](art/screenshots/screenshot-2.png) | ![Image](art/screenshots/screenshot-3.png) | ![Dark Theme](art/screenshots/screenshot-4.png) |
 
 ## Android development
