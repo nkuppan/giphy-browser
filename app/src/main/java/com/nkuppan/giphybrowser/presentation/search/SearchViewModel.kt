@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val application: Application
+    application: Application
 ) : BaseViewModel(application) {
 
     val queryString: MutableLiveData<String> = MutableLiveData()
@@ -28,7 +28,8 @@ class SearchViewModel @Inject constructor(
             _searchThisQuery.value = Event(query!!.trim())
             true
         } else {
-            _errorMessage.value = application.getString(R.string.enter_valid_query_string)
+            _errorMessage.value =
+                getApplication<Application>().getString(R.string.enter_valid_query_string)
             false
         }
     }
