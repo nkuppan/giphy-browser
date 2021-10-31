@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nkuppan.giphybrowser.browser.R
@@ -66,5 +67,14 @@ class GiphySearchFragment : BaseFragment() {
                 )
             }
         )
+
+        binding.darkTheme.setOnCheckedChangeListener { _, isChecked ->
+            AppCompatDelegate.setDefaultNightMode(
+                if (isChecked)
+                    AppCompatDelegate.MODE_NIGHT_YES
+                else
+                    AppCompatDelegate.MODE_NIGHT_NO
+            )
+        }
     }
 }

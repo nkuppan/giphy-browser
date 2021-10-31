@@ -6,4 +6,5 @@
     <string name="stickers">Stickers</string>
     <string name="powered_by">Powered By</string>
     <string name="query_error_message">Please enter a valid search param</string>
+    <string name="dark_theme">Dark Theme</string>
 </resources>
