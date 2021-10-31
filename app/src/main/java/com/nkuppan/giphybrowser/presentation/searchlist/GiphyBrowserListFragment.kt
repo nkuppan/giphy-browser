@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -42,9 +43,7 @@ class GiphyBrowserListFragment : BaseFragment() {
         }
     }
 
-    private val viewModel: SearchViewModel by lazy {
-        viewModels<SearchViewModel>().value
-    }
+    private val searchViewModel: SearchViewModel by activityViewModels()
 
     private val adapter = GiphyListAdapter { giphyImage ->
         lifecycleScope.launch {
@@ -62,13 +61,13 @@ class GiphyBrowserListFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGiphyBrowseListBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        binding.searchViewModel = searchViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.updateQuery(queryString)
+        searchViewModel.updateQuery(queryString)
         giphySearchViewModel.refreshSearchWithQuery(queryString)
         setupViewModel()
         setupSwipeRefresh()
@@ -81,7 +80,7 @@ class GiphyBrowserListFragment : BaseFragment() {
         binding.searchContainer.query.apply {
             setOnEditorActionListener { _, actionId, _ ->
                 return@setOnEditorActionListener if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if (viewModel.processQuery()) {
+                    if (searchViewModel.processQuery()) {
                         clearFocusAndHideKeyboard()
                     } else {
                         binding.root.showSnackBarMessage(R.string.enter_valid_query_string)
@@ -93,11 +92,14 @@ class GiphyBrowserListFragment : BaseFragment() {
             }
         }
 
-        viewModel.searchThisQuery.observe(viewLifecycleOwner, EventObserver {
-            if (giphySearchViewModel.refreshSearchWithQuery(it)) {
-                adapter.refresh()
+        searchViewModel.searchThisQuery.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                if (giphySearchViewModel.refreshSearchWithQuery(it)) {
+                    adapter.refresh()
+                }
             }
-        })
+        )
     }
 
     private fun setupViewModel() {

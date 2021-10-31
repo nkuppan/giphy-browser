@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="set_by_battery_saver">Set by battery saver</string>
+    <string name="system_default">System default</string>
+</resources>

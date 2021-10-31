@@ -2,7 +2,6 @@ package com.nkuppan.giphybrowser.domain.network.model
 
 import com.google.gson.annotations.SerializedName
 
-
 /**
  * GIPHY's images details and different formats image source
  */

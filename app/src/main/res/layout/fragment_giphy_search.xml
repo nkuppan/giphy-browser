@@ -5,8 +5,12 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="searchViewModel"
             type="com.nkuppan.giphybrowser.presentation.search.SearchViewModel" />
+
+        <variable
+            name="themeViewModel"
+            type="com.nkuppan.giphybrowser.presentation.theme.ThemeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +20,7 @@
         <include
             android:id="@+id/search_container"
             layout="@layout/widget_search_container"
-            app:viewModel="@{viewModel}" />
+            app:viewModel="@{searchViewModel}" />
 
         <RadioGroup
             android:id="@+id/giphy_types"
@@ -47,8 +51,8 @@
 
         <ImageView
             android:id="@+id/giphy_bottom_logo"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/launcher_bottom_logo_width"
+            android:layout_height="@dimen/launcher_bottom_logo_height"
             android:layout_marginBottom="@dimen/margin_16dp"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
@@ -68,6 +72,18 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/giphy_bottom_logo" />
+
+
+        <Button
+            android:id="@+id/dark_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:onClick="@{() -> themeViewModel.chooseTheme()}"
+            android:text="@string/choose_theme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/giphy_types" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

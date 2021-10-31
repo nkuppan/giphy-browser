@@ -12,7 +12,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="300dp"
+        android:minWidth="@dimen/search_container_min_width"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/card_elevation"
         app:cardUseCompatPadding="true"

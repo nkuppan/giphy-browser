@@ -57,6 +57,8 @@ dependencies {
     api(Libs.Square.Retrofit.retrofit)
     api(Libs.Square.Retrofit.gsonConverter)
 
+    api(Libs.AndroidX.DataStore.preferences)
+
     testImplementation(Libs.AndroidX.Test.runner)
     androidTestImplementation(Libs.AndroidX.Test.JUnit.ktx)
     androidTestImplementation(Libs.AndroidX.Test.Espresso.core)

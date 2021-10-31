@@ -2,7 +2,6 @@ package com.nkuppan.giphybrowser.core.extension
 
 import androidx.lifecycle.Observer
 
-
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.
  */

@@ -15,6 +15,10 @@
             android:id="@+id/action_giphy_search_to_giphy_browse_list"
             app:destination="@id/giphy_browse_list" />
 
+        <action
+            android:id="@+id/action_giphy_search_to_theme"
+            app:destination="@id/theme" />
+
     </fragment>
 
 
@@ -49,5 +53,17 @@
             app:argType="com.nkuppan.giphybrowser.domain.model.GiphyImage"
             app:nullable="false" />
     </fragment>
+
+
+    <dialog
+        android:id="@+id/theme"
+        android:name="com.nkuppan.giphybrowser.presentation.theme.ThemeDialogFragment"
+        android:label="ThemeDialogFragment">
+
+        <argument
+            android:name="theme"
+            app:argType="com.nkuppan.giphybrowser.domain.model.Theme" />
+
+    </dialog>
 
 </navigation>

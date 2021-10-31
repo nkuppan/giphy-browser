@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/fragment_giphy_browse_list.xml" value="0.17249240121580547" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/fragment_giphy_search.xml" value="0.17249240121580547" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/app/src/main/res/layout/widget_search_container.xml" value="0.26268115942028986" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/core/src/main/res/drawable-night/ic_giphy_logo.xml" value="0.4" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/core/src/main/res/drawable/ic_giphy_logo.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/nkuppan/Documents/GitHub/mine/giphy-browser/core/src/main/res/drawable/launcher_bg.xml" value="0.37083333333333335" />
+      </map>
+    </option>
   </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

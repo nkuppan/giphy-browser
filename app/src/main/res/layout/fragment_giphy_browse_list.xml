@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="searchViewModel"
             type="com.nkuppan.giphybrowser.presentation.search.SearchViewModel" />
     </data>
 
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_16dp"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:viewModel="@{viewModel}" />
+                app:viewModel="@{searchViewModel}" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
