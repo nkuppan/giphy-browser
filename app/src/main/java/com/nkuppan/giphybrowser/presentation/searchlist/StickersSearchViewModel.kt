@@ -8,10 +8,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StickersSearchViewModel @Inject constructor(
-    aApplication: Application,
-    aStickerSearchUseCase: StickerSearchUseCase
+    application: Application,
+    stickerSearchUseCase: StickerSearchUseCase
 ) : GiphyBrowserListViewModel(
-    aApplication,
+    application,
     Type.STICKERS,
-    aStickerSearchUseCase = aStickerSearchUseCase
+    stickerSearchUseCase = stickerSearchUseCase
 )

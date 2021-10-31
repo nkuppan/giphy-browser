@@ -8,10 +8,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GifSearchViewModel @Inject constructor(
-    aApplication: Application,
-    aGifSearchUseCase: GifSearchUseCase
+    application: Application,
+    gifSearchUseCase: GifSearchUseCase
 ) : GiphyBrowserListViewModel(
-    aApplication,
+    application,
     Type.GIF,
-    aGifSearchUseCase = aGifSearchUseCase
+    gifSearchUseCase = gifSearchUseCase
 )

@@ -10,18 +10,18 @@ import com.nkuppan.giphybrowser.domain.usecase.StickerSearchUseCase
 class GiphyPagingSource(
     private val type: Type,
     private val query: String,
-    private val aGifSearchUseCase: GifSearchUseCase? = null,
-    private val aStickerSearchUseCase: StickerSearchUseCase? = null
+    private val gifSearchUseCase: GifSearchUseCase? = null,
+    private val stickerSearchUseCase: StickerSearchUseCase? = null
 ) : PagingSource<Int, GiphyImage>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GiphyImage> {
         val page = params.key ?: 0
         val pageSize = params.loadSize
         val (success, response) = when (type) {
-            Type.GIF -> aGifSearchUseCase?.invoke(
+            Type.GIF -> gifSearchUseCase?.invoke(
                 query, page * pageSize, pageSize
             ) ?: (false to emptyList())
-            Type.STICKERS -> aStickerSearchUseCase?.invoke(
+            Type.STICKERS -> stickerSearchUseCase?.invoke(
                 query, page * pageSize, pageSize
             ) ?: (false to emptyList())
         }

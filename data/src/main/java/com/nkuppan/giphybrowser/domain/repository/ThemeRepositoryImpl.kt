@@ -5,13 +5,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.nkuppan.giphybrowser.domain.R
 import com.nkuppan.giphybrowser.domain.datastore.ThemeDataStore
 import com.nkuppan.giphybrowser.domain.model.Theme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ThemeRepositoryImpl(private val dataStore: ThemeDataStore) : ThemeRepository {
 
@@ -30,10 +27,13 @@ class ThemeRepositoryImpl(private val dataStore: ThemeDataStore) : ThemeReposito
         }
     }
 
-    override fun applyTheme(coroutineScope: CoroutineScope) {
+    override fun applyTheme(
+        coroutineScope: CoroutineScope,
+        mainThreadDispatcher: CoroutineDispatcher
+    ) {
         coroutineScope.launch {
             val theme = getSelectedTheme().first()
-            withContext(Dispatchers.Main) {
+            withContext(mainThreadDispatcher) {
                 val mode = theme.mode
                 AppCompatDelegate.setDefaultNightMode(mode)
             }

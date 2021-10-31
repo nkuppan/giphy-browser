@@ -16,11 +16,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 open class GiphyBrowserListViewModel(
-    aApplication: Application,
-    private val aType: Type,
-    private val aGifSearchUseCase: GifSearchUseCase? = null,
-    private val aStickerSearchUseCase: StickerSearchUseCase? = null
-) : BaseViewModel(aApplication) {
+    application: Application,
+    private val type: Type,
+    private val gifSearchUseCase: GifSearchUseCase? = null,
+    private val stickerSearchUseCase: StickerSearchUseCase? = null
+) : BaseViewModel(application) {
 
     private var queryString: String = ""
 
@@ -39,7 +39,7 @@ open class GiphyBrowserListViewModel(
 
         searchResult = Pager(PagingConfig(PAGE_SIZE)) {
             GiphyPagingSource(
-                aType, queryString, aGifSearchUseCase, aStickerSearchUseCase
+                type, queryString, gifSearchUseCase, stickerSearchUseCase
             )
         }.flow.cachedIn(viewModelScope)
 

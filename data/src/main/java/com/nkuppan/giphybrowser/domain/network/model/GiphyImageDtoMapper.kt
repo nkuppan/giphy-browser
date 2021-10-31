@@ -1,10 +1,10 @@
 package com.nkuppan.giphybrowser.domain.network.model
 
+import com.nkuppan.giphybrowser.domain.mapper.DomainMapper
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.domain.model.GiphyImageAttributes
 
-class GiphyImageDtoMapper :
-    com.nkuppan.giphybrowser.domain.mapper.DomainMapper<GiphyImageDto, GiphyImage> {
+class GiphyImageDtoMapper : DomainMapper<GiphyImageDto, GiphyImage> {
 
     override fun mapToDomainModel(model: GiphyImageDto): GiphyImage {
 

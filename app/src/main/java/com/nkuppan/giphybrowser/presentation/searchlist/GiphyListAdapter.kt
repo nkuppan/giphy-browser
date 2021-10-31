@@ -8,7 +8,7 @@ import com.nkuppan.giphybrowser.databinding.ListItemGiphyBinding
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
 
 class GiphyListAdapter(
-    private val onClick: (image: GiphyImage) -> Unit
+    private val clickCallback: (image: GiphyImage) -> Unit
 ) : PagingDataAdapter<GiphyImage, GiphyListViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = GiphyListViewHolder(
@@ -16,8 +16,9 @@ class GiphyListAdapter(
     )
 
     override fun onBindViewHolder(holder: GiphyListViewHolder, position: Int) {
-        val image = getItem(position) ?: return
-        holder.bind(image, onClick)
+        getItem(position)?.let {
+            holder.bind(it, clickCallback)
+        }
     }
 
     companion object {

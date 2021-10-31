@@ -15,14 +15,14 @@ class GiphyListViewHolder(private val binding: ListItemGiphyBinding) :
     private val set = ConstraintSet()
 
     fun bind(
-        imageDto: GiphyImage,
-        onClick: (GiphyImage: GiphyImage) -> Unit
+        image: GiphyImage,
+        clickCallback: (GiphyImage: GiphyImage) -> Unit
     ) {
         binding.apply {
 
-            title.text = imageDto.title
+            title.text = image.title
 
-            val fixedHeightImage = imageDto.thumbnail
+            val fixedHeightImage = image.thumbnail
 
             Glide
                 .with(giphyImageView.context)
@@ -40,7 +40,7 @@ class GiphyListViewHolder(private val binding: ListItemGiphyBinding) :
             set.applyTo(parentConstraint)
 
             root.setOnClickListener {
-                onClick.invoke(imageDto)
+                clickCallback.invoke(image)
             }
         }
     }

@@ -91,17 +91,17 @@ class AppModule {
     @Provides
     @Singleton
     fun provideGiphyGifSearchUseCase(
-        aGiphyRepository: GiphyRepository
+        giphyRepository: GiphyRepository
     ): GifSearchUseCase {
-        return GifSearchUseCase(aGiphyRepository)
+        return GifSearchUseCase(giphyRepository)
     }
 
     @Provides
     @Singleton
     fun provideGiphyStickerSearchUseCase(
-        aGiphyRepository: GiphyRepository
+        giphyRepository: GiphyRepository
     ): StickerSearchUseCase {
-        return StickerSearchUseCase(aGiphyRepository)
+        return StickerSearchUseCase(giphyRepository)
     }
 
     companion object {
