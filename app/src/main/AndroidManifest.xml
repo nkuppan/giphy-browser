@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.LauncherTheme">
+            android:theme="@style/AppTheme.LauncherTheme"
+            android:name=".presentation.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

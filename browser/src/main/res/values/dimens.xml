@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="error_image_size">60dp</dimen>
-    <dimen name="no_elevation">0dp</dimen>
-    <dimen name="search_container_min_width">300dp</dimen>
-</resources>

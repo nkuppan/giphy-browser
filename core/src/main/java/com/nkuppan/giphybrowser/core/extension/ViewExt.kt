@@ -19,6 +19,6 @@ fun EditText.clearFocusAndHideKeyboard() {
 /**
  * Extension method to show snackbar using the view
  */
-fun View.showSnackBarMessage(@StringRes aStringRes: Int, aLength: Int = Snackbar.LENGTH_LONG) {
-    Snackbar.make(this, aStringRes, aLength).show()
+fun View.showSnackBarMessage(@StringRes stringRes: Int, length: Int = Snackbar.LENGTH_LONG) {
+    Snackbar.make(this, stringRes, length).show()
 }

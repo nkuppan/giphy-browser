@@ -6,5 +6,11 @@
     <string name="stickers">Stickers</string>
     <string name="powered_by">Powered By</string>
     <string name="query_error_message">Please enter a valid search param</string>
+
+    <string name="retry">Retry</string>
+    <string name="content_giphy_image">Giphy Image</string>
+    <string name="failed_to_refresh_giphy">Failed to load giphy images</string>
+    <string name="enter_valid_query_string">Enter a valid query</string>
     <string name="dark_theme">Dark Theme</string>
+    <string name="choose_theme">Choose Theme</string>
 </resources>

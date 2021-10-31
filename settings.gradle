@@ -1,4 +1,5 @@
 include ':app'
 include ':core'
-include ':browser'
+include ':domain'
+include ':data'
 rootProject.name = "giphy-browser"

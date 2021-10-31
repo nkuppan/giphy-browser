@@ -12,7 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.nkuppan.giphybrowser.R
 import com.nkuppan.giphybrowser.browser.util.MatcherUtil.childAtPosition
-import com.nkuppan.giphybrowser.ui.activity.MainActivity
+import com.nkuppan.giphybrowser.presentation.MainActivity
 import org.hamcrest.Matchers.allOf
 import org.junit.Rule
 import org.junit.Test

@@ -47,7 +47,13 @@ android {
 dependencies {
 
     implementation project(":core")
-    implementation project(":browser")
+    implementation project(":data")
+    implementation project(":domain")
+
+    implementation(Libs.Glide.core)
+    annotationProcessor(Libs.Glide.compiler)
+
+    implementation(Libs.AndroidX.Paging.runtime)
 
     implementation(Libs.Google.Hilt.android)
     kapt(Libs.Google.Hilt.compiler)
