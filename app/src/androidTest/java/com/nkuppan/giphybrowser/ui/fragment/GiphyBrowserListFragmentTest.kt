@@ -66,7 +66,7 @@ class GiphyBrowserListFragmentTest {
         Espresso.onView(ViewMatchers.withId(R.id.query))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-        Espresso.onView(ViewMatchers.withId(R.id.progressIndicator))
+        Espresso.onView(ViewMatchers.withId(R.id.loader))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
         Thread.sleep(5000)

@@ -86,7 +86,7 @@
             </LinearLayout>
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/progressIndicator"
+                android:id="@+id/loader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"

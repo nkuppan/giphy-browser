@@ -91,7 +91,7 @@ class GiphySearchWorkflowTest {
         findSearchContainerAddTextAndSubmit("Android")
 
         // Checking query field present in the giphy browser list screen
-        onView(withId(R.id.progressIndicator)).check(matches(isDisplayed()))
+        onView(withId(R.id.loader)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -104,6 +104,6 @@ class GiphySearchWorkflowTest {
         findSearchContainerAddTextAndSubmit("Android")
 
         // Checking query field present in the giphy browser list screen
-        onView(withId(R.id.progressIndicator)).check(matches(isDisplayed()))
+        onView(withId(R.id.loader)).check(matches(isDisplayed()))
     }
 }

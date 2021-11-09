@@ -123,19 +123,19 @@ class GiphyBrowserListFragment : BaseFragment() {
                 is LoadState.Loading -> {
                     binding.retry.isVisible = false
                     if (adapter.itemCount == 0)
-                        binding.progressIndicator.show()
+                        binding.loader.show()
                     else
-                        binding.progressIndicator.hide()
+                        binding.loader.hide()
                 }
                 is LoadState.NotLoading -> {
                     binding.swipeRefreshLayout.isRefreshing = false
                     binding.retry.isVisible = false
-                    binding.progressIndicator.hide()
+                    binding.loader.hide()
                 }
                 is LoadState.Error -> {
                     binding.swipeRefreshLayout.isRefreshing = false
                     binding.retry.isVisible = adapter.itemCount == 0
-                    binding.progressIndicator.hide()
+                    binding.loader.hide()
                     if (adapter.itemCount > 0) {
                         binding.root.showSnackBarMessage(R.string.failed_to_refresh_giphy)
                     }
