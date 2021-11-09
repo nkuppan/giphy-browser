@@ -21,4 +21,8 @@ data class GiphyImageAttributes(
     val height: String,
     val width: String,
     val url: String
-) : Serializable
+) : Serializable {
+    fun getHeightAnWidth(): String {
+        return "${width}:${height}"
+    }
+}
