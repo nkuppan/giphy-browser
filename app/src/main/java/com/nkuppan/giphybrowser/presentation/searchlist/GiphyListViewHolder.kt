@@ -23,20 +23,10 @@ class GiphyListViewHolder(private val binding: ListItemGiphyBinding) :
             title.text = image.title
 
             val fixedHeightImage = image.thumbnail
+            binding.imageUrl = fixedHeightImage.url
 
-            Glide
-                .with(giphyImageView.context)
-                .setDefaultRequestOptions(
-                    RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)
-                )
-                .load(fixedHeightImage.url)
-                .error(R.drawable.ic_error)
-                .placeholder(R.drawable.image_place_holder)
-                .into(giphyImageView)
-
-            val ratio = String.format("%s:%s", fixedHeightImage.width, fixedHeightImage.height)
             set.clone(parentConstraint)
-            set.setDimensionRatio(giphyImageView.id, ratio)
+            set.setDimensionRatio(giphyImageView.id, fixedHeightImage.getHeightAnWidth())
             set.applyTo(parentConstraint)
 
             root.setOnClickListener {
