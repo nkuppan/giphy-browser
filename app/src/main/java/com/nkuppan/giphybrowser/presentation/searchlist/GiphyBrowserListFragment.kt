@@ -105,7 +105,9 @@ class GiphyBrowserListFragment : BaseFragment() {
     private fun setupViewModel() {
         lifecycleScope.launch {
             giphySearchViewModel.searchResult.collect {
-                adapter.submitData(viewLifecycleOwner.lifecycle, it)
+                //Can remove the lifecycle as an input to the adapter submit data api. Since we are
+                //using the coroutine scope and flows
+                adapter.submitData(it)
             }
         }
     }
