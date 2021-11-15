@@ -39,10 +39,11 @@ class GiphyImageFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbar.title = EMPTY_CHAR
         binding.toolbar.setNavigationIcon(R.drawable.ic_back_navigation)
 
         setSupportedActionBar(binding.toolbar)
+
+        setTitle(EMPTY_CHAR)
 
         loadImage()
     }
@@ -56,7 +57,7 @@ class GiphyImageFragment : BaseFragment() {
             binding.giphyImageView,
             image.original.url
         ) { status ->
-            if (!isRemoving) {
+            if (isAdded) {
                 binding.loader.hide()
                 Logger.getGlobal().warning("Status of the glide loading $status")
             }

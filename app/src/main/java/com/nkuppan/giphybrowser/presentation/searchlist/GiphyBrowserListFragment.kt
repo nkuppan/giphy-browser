@@ -1,6 +1,7 @@
 package com.nkuppan.giphybrowser.presentation.searchlist
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +30,6 @@ import kotlinx.coroutines.launch
 class GiphyBrowserListFragment : BaseFragment() {
 
     private val args: GiphyBrowserListFragmentArgs by navArgs()
-
-    private val queryString: String by lazy { args.query }
 
     private val type: Type by lazy { args.type }
 
@@ -67,8 +66,7 @@ class GiphyBrowserListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchViewModel.updateQuery(queryString)
-        giphySearchViewModel.refreshSearchWithQuery(queryString)
+        giphySearchViewModel.refreshSearchWithQuery(searchViewModel.queryString.value ?: "")
         setupViewModel()
         setupSwipeRefresh()
         setupRecyclerView()
@@ -80,15 +78,19 @@ class GiphyBrowserListFragment : BaseFragment() {
         binding.searchContainer.query.apply {
             setOnEditorActionListener { _, actionId, _ ->
                 return@setOnEditorActionListener if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if (searchViewModel.processQuery()) {
-                        clearFocusAndHideKeyboard()
-                    } else {
-                        binding.root.showSnackBarMessage(R.string.enter_valid_query_string)
-                    }
+                    handleSearchAction()
                     true
                 } else {
                     false
                 }
+            }
+
+            setOnKeyListener { _, _, event ->
+                if (event.keyCode == KeyEvent.KEYCODE_ENTER) {
+                    handleSearchAction()
+                    return@setOnKeyListener true
+                }
+                return@setOnKeyListener false
             }
         }
 
@@ -146,5 +148,13 @@ class GiphyBrowserListFragment : BaseFragment() {
         }
 
         binding.retryButton.setOnClickListener { adapter.retry() }
+    }
+
+    private fun handleSearchAction() {
+        if (searchViewModel.processQuery()) {
+            binding.searchContainer.query.clearFocusAndHideKeyboard()
+        } else {
+            binding.root.showSnackBarMessage(R.string.enter_valid_query_string)
+        }
     }
 }

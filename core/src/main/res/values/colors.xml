@@ -6,7 +6,7 @@
     <color name="black">@android:color/black</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="red">@android:color/holo_red_dark</color>
-    <color name="grey_light">#E0E0E0</color>
+    <color name="grey_light">#D3D3D3</color>
     <color name="blue">#166EF7</color>
 
     <!-- Below colors are used to create theme -->

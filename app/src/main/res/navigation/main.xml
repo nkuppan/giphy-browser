@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/giphy_search"
         android:name="com.nkuppan.giphybrowser.presentation.search.GiphySearchFragment"
-        android:label="GiphySearchFragment"
+        android:label=""
         tools:layout="@layout/fragment_giphy_search">
 
         <action
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/giphy_browse_list"
         android:name="com.nkuppan.giphybrowser.presentation.searchlist.GiphyBrowserListFragment"
-        android:label="GiphySearchFragment"
+        android:label=""
         tools:layout="@layout/fragment_giphy_browse_list">
 
         <argument
@@ -45,7 +45,7 @@
     <fragment
         android:id="@+id/giphyImageFragment"
         android:name="com.nkuppan.giphybrowser.presentation.searchdetails.GiphyImageFragment"
-        android:label="GiphyImageFragment"
+        android:label=""
         tools:layout="@layout/fragment_giphy_image">
 
         <argument
@@ -58,7 +58,7 @@
     <dialog
         android:id="@+id/theme"
         android:name="com.nkuppan.giphybrowser.presentation.theme.ThemeDialogFragment"
-        android:label="ThemeDialogFragment">
+        android:label="">
 
         <argument
             android:name="theme"

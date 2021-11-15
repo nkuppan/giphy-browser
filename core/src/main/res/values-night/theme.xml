@@ -3,6 +3,7 @@
 
     <color name="colorSurface">@color/black</color>
     <color name="colorOnSurface">@color/white</color>
+    <color name="grey_light">#6A6A6A</color>
 
     <style name="AppTheme" parent="BaseTheme">
         <!--selection controls.-->

@@ -17,4 +17,10 @@ open class BaseFragment : Fragment() {
             it.setupActionBarWithNavController(findNavController())
         }
     }
+
+    fun setTitle(title: String) {
+        (requireActivity() as AppCompatActivity?)?.supportActionBar?.let {
+            it.title = title
+        }
+    }
 }
