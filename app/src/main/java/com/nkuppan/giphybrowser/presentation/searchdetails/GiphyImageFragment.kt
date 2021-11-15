@@ -12,6 +12,7 @@ import com.nkuppan.giphybrowser.core.ui.fragment.BaseFragment
 import com.nkuppan.giphybrowser.databinding.FragmentGiphyImageBinding
 import com.nkuppan.giphybrowser.domain.extension.loadNetworkImageWithStatusCallback
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
+import com.nkuppan.giphybrowser.utils.EMPTY_CHAR
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.logging.Logger
 
@@ -38,6 +39,7 @@ class GiphyImageFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.toolbar.title = EMPTY_CHAR
         binding.toolbar.setNavigationIcon(R.drawable.ic_back_navigation)
 
         setSupportedActionBar(binding.toolbar)
@@ -54,8 +56,10 @@ class GiphyImageFragment : BaseFragment() {
             binding.giphyImageView,
             image.original.url
         ) { status ->
-            binding.loader.hide()
-            Logger.getGlobal().warning("Status of the glide loading $status")
+            if (!isRemoving) {
+                binding.loader.hide()
+                Logger.getGlobal().warning("Status of the glide loading $status")
+            }
         }
     }
 }

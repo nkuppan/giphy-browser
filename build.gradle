@@ -18,7 +18,6 @@ buildscript {
          * Google Hilt library Gradle plugin to support dependency injection
          */
         classpath Libs.Google.Hilt.androidGradlePlugin
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31'
     }
 }
 
