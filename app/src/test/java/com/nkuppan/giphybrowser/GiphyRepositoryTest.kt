@@ -69,7 +69,6 @@ class GiphyRepositoryTest {
 
         giphyRepository = GiphyRepositoryImpl(
             giphyApiService,
-            GiphyImageDtoMapper(),
             testCoroutineDispatcher
         )
     }
