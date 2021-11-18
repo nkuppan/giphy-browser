@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="com.nkuppan.giphybrowser.domain.utils.SearchPageValidatorKt" />
+
         <variable
             name="searchViewModel"
             type="com.nkuppan.giphybrowser.presentation.search.SearchViewModel" />
@@ -73,17 +75,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/giphy_bottom_logo" />
 
-
         <Button
-            android:id="@+id/dark_theme"
+            android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16dp"
-            android:onClick="@{() -> themeViewModel.chooseTheme()}"
-            android:text="@string/choose_theme"
+            android:enabled="@{SearchPageValidatorKt.isValidQueryString(searchViewModel.queryString)}"
+            android:onClick="@{()->searchViewModel.processQuery()}"
+            android:text="@string/search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/giphy_types" />
+
+        <ImageView
+            android:id="@+id/choose_theme"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:contentDescription="@string/choose_theme"
+            android:onClick="@{() -> themeViewModel.chooseTheme()}"
+            android:src="@drawable/ic_theme"
+            android:text="@string/choose_theme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,5 @@
 package com.nkuppan.giphybrowser.presentation.search
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nkuppan.giphybrowser.R
@@ -11,9 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(
-    application: Application
-) : BaseViewModel(application) {
+class SearchViewModel @Inject constructor() : BaseViewModel() {
 
     val queryString: MutableLiveData<String> = MutableLiveData()
 
@@ -28,13 +25,8 @@ class SearchViewModel @Inject constructor(
             _searchThisQuery.value = Event(query!!.trim())
             true
         } else {
-            _errorMessage.value =
-                getApplication<Application>().getString(R.string.enter_valid_query_string)
+            _errorMessage.value = R.string.enter_valid_query_string
             false
         }
-    }
-
-    fun updateQuery(aSearchQuery: String) {
-        queryString.value = aSearchQuery
     }
 }

@@ -13,4 +13,5 @@
     <string name="enter_valid_query_string">Enter a valid query</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="choose_theme">Choose Theme</string>
+    <string name="search">Search</string>
 </resources>

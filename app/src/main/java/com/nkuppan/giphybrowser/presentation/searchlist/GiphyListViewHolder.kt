@@ -2,10 +2,6 @@ package com.nkuppan.giphybrowser.presentation.searchlist
 
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
-import com.nkuppan.giphybrowser.R
 import com.nkuppan.giphybrowser.databinding.ListItemGiphyBinding
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
 

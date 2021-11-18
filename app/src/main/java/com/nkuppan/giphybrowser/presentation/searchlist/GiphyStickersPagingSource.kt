@@ -3,28 +3,19 @@ package com.nkuppan.giphybrowser.presentation.searchlist
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
-import com.nkuppan.giphybrowser.domain.model.Type
-import com.nkuppan.giphybrowser.domain.usecase.GifSearchUseCase
 import com.nkuppan.giphybrowser.domain.usecase.StickerSearchUseCase
 
-class GiphyPagingSource(
-    private val type: Type,
+class GiphyStickersPagingSource(
     private val query: String,
-    private val gifSearchUseCase: GifSearchUseCase? = null,
-    private val stickerSearchUseCase: StickerSearchUseCase? = null
+    private val stickerSearchUseCase: StickerSearchUseCase
 ) : PagingSource<Int, GiphyImage>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GiphyImage> {
         val page = params.key ?: 0
         val pageSize = params.loadSize
-        val (success, response) = when (type) {
-            Type.GIF -> gifSearchUseCase?.invoke(
-                query, page * pageSize, pageSize
-            ) ?: (false to emptyList())
-            Type.STICKERS -> stickerSearchUseCase?.invoke(
-                query, page * pageSize, pageSize
-            ) ?: (false to emptyList())
-        }
+        val (success, response) = stickerSearchUseCase.invoke(
+            query, page * pageSize, pageSize
+        )
         return if (success) {
             LoadResult.Page(
                 data = response,

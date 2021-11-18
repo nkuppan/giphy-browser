@@ -1,6 +1,5 @@
 package com.nkuppan.giphybrowser.presentation.theme
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,9 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ThemeViewModel @Inject constructor(
-    application: Application,
     private val themeRepository: ThemeRepository
-) : BaseViewModel(application) {
+) : BaseViewModel() {
 
     private val _openThemeDialog = MutableLiveData<Event<Unit>>()
     val openThemeDialog: LiveData<Event<Unit>> = _openThemeDialog

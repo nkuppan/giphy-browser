@@ -39,6 +39,7 @@ class GiphySearchFragment : BaseFragment() {
         binding = FragmentGiphySearchBinding.inflate(inflater, container, false)
         binding.searchViewModel = searchViewModel
         binding.themeViewModel = themeViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
