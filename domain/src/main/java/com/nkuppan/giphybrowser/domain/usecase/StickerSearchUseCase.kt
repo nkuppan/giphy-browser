@@ -1,6 +1,7 @@
 package com.nkuppan.giphybrowser.domain.usecase
 
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
+import com.nkuppan.giphybrowser.domain.model.NetworkResult
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 
 /**
@@ -22,7 +23,7 @@ class StickerSearchUseCase(
         aQuery: String,
         aPage: Int,
         aPageSize: Int
-    ): Pair<Boolean, List<GiphyImage>> {
+    ): NetworkResult<List<GiphyImage>> {
         return repository.getStickersResponse(aQuery, aPage, aPageSize)
     }
 }

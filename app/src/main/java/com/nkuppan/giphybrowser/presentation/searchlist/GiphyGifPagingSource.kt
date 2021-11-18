@@ -3,6 +3,7 @@ package com.nkuppan.giphybrowser.presentation.searchlist
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
+import com.nkuppan.giphybrowser.domain.model.NetworkResult
 import com.nkuppan.giphybrowser.domain.usecase.GifSearchUseCase
 
 class GiphyGifPagingSource(
@@ -13,17 +14,21 @@ class GiphyGifPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GiphyImage> {
         val page = params.key ?: 0
         val pageSize = params.loadSize
-        val (success, response) = gifSearchUseCase.invoke(
-            query, page * pageSize, pageSize
-        )
-        return if (success) {
-            LoadResult.Page(
-                data = response,
-                prevKey = if (page == 0) null else page.dec(),
-                nextKey = if (response.isEmpty()) null else page.inc()
-            )
-        } else {
-            LoadResult.Error(RuntimeException("Failed to fetch response with page = $page and page size = $pageSize"))
+        return when (val response = gifSearchUseCase.invoke(query, page * pageSize, pageSize)) {
+            is NetworkResult.Error -> {
+                LoadResult.Error(
+                    RuntimeException(
+                        "Failed to fetch response with page = $page and page size = $pageSize"
+                    )
+                )
+            }
+            is NetworkResult.Success -> {
+                LoadResult.Page(
+                    data = response.data,
+                    prevKey = if (page == 0) null else page.dec(),
+                    nextKey = if (response.data.isEmpty()) null else page.inc()
+                )
+            }
         }
     }
 
