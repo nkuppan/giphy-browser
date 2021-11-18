@@ -1,7 +1,7 @@
 package com.nkuppan.giphybrowser.domain.repository
 
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
-import com.nkuppan.giphybrowser.domain.model.NetworkResult
+import com.nkuppan.giphybrowser.domain.model.Resource
 
 interface GiphyRepository {
 
@@ -12,7 +12,7 @@ interface GiphyRepository {
         query: String,
         page: Int,
         pageSize: Int
-    ): NetworkResult<List<GiphyImage>>
+    ): Resource<List<GiphyImage>>
 
     /**
      * Reading a paged data from the GIPHY stickers api
@@ -21,5 +21,5 @@ interface GiphyRepository {
         query: String,
         page: Int,
         pageSize: Int
-    ): NetworkResult<List<GiphyImage>>
+    ): Resource<List<GiphyImage>>
 }

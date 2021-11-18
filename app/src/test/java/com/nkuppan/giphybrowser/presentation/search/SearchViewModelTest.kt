@@ -2,7 +2,7 @@ package com.nkuppan.giphybrowser.presentation.search
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
-import com.nkuppan.giphybrowser.domain.model.NetworkResult
+import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.utils.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -54,7 +54,7 @@ class FakeGiphyRepository : GiphyRepository {
         query: String,
         page: Int,
         pageSize: Int
-    ): NetworkResult<List<GiphyImage>> {
+    ): Resource<List<GiphyImage>> {
         TODO("Not yet implemented")
     }
 
@@ -62,8 +62,7 @@ class FakeGiphyRepository : GiphyRepository {
         query: String,
         page: Int,
         pageSize: Int
-    ): NetworkResult<List<GiphyImage>> {
+    ): Resource<List<GiphyImage>> {
         TODO("Not yet implemented")
     }
-
 }

@@ -3,7 +3,7 @@ package com.nkuppan.giphybrowser.presentation.searchlist
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
-import com.nkuppan.giphybrowser.domain.model.NetworkResult
+import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.usecase.GifSearchUseCase
 
 class GiphyGifPagingSource(
@@ -15,14 +15,14 @@ class GiphyGifPagingSource(
         val page = params.key ?: 0
         val pageSize = params.loadSize
         return when (val response = gifSearchUseCase.invoke(query, page * pageSize, pageSize)) {
-            is NetworkResult.Error -> {
+            is Resource.Error -> {
                 LoadResult.Error(
                     RuntimeException(
                         "Failed to fetch response with page = $page and page size = $pageSize"
                     )
                 )
             }
-            is NetworkResult.Success -> {
+            is Resource.Success -> {
                 LoadResult.Page(
                     data = response.data,
                     prevKey = if (page == 0) null else page.dec(),

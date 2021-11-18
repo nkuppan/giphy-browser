@@ -4,7 +4,6 @@ import android.content.Context
 import com.nkuppan.giphybrowser.di.AppModule.dataStore
 import com.nkuppan.giphybrowser.domain.datastore.ThemeDataStore
 import com.nkuppan.giphybrowser.domain.network.GiphyApiService
-import com.nkuppan.giphybrowser.domain.network.model.GiphyImageDtoMapper
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepositoryImpl
 import com.nkuppan.giphybrowser.domain.repository.ThemeRepository
@@ -38,19 +37,11 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideGiphyDtoMapper(): GiphyImageDtoMapper {
-        return GiphyImageDtoMapper()
-    }
-
-    @Provides
-    @Singleton
     fun provideGiphyRepository(
-        service: GiphyApiService,
-        mapper: GiphyImageDtoMapper
+        service: GiphyApiService
     ): GiphyRepository {
         return GiphyRepositoryImpl(
-            service,
-            mapper
+            service
         )
     }
 

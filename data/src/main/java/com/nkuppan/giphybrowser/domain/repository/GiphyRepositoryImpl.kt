@@ -2,9 +2,8 @@ package com.nkuppan.giphybrowser.domain.repository
 
 import com.nkuppan.giphybrowser.core.BuildConfig
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
-import com.nkuppan.giphybrowser.domain.model.NetworkResult
+import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.network.GiphyApiService
-import com.nkuppan.giphybrowser.domain.network.model.GiphyImageDtoMapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -13,7 +12,6 @@ import java.util.logging.Logger
 
 class GiphyRepositoryImpl(
     private val service: GiphyApiService,
-    private val mapper: GiphyImageDtoMapper,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GiphyRepository {
 
@@ -21,7 +19,7 @@ class GiphyRepositoryImpl(
         query: String,
         page: Int,
         pageSize: Int
-    ): NetworkResult<List<GiphyImage>> = withContext(dispatcher) {
+    ): Resource<List<GiphyImage>> = withContext(dispatcher) {
         val response = try {
             val apiKey = BuildConfig.GIPHY_API_KEY
             val response = service.searchGiphyGifs(
@@ -31,13 +29,15 @@ class GiphyRepositoryImpl(
                 limit = pageSize
             ).awaitResponse()
             if (response.isSuccessful && response.body()?.isSuccess() == true) {
-                NetworkResult.Success(mapper.toDomainList(response.body()?.data ?: emptyList()))
+                Resource.Success(
+                    (response.body()?.data ?: emptyList()).map { it.toGiphyImage() }
+                )
             } else {
-                NetworkResult.Error(KotlinNullPointerException("No data found"))
+                Resource.Error(KotlinNullPointerException("No data found"))
             }
         } catch (e: Exception) {
             Logger.getGlobal().severe(e.toString())
-            NetworkResult.Error(e)
+            Resource.Error(e)
         }
 
         return@withContext response
@@ -47,7 +47,7 @@ class GiphyRepositoryImpl(
         query: String,
         page: Int,
         pageSize: Int
-    ): NetworkResult<List<GiphyImage>> = withContext(dispatcher) {
+    ): Resource<List<GiphyImage>> = withContext(dispatcher) {
         val response = try {
             val apiKey = BuildConfig.GIPHY_API_KEY
             val response = service.searchGiphyStickers(
@@ -57,13 +57,15 @@ class GiphyRepositoryImpl(
                 limit = pageSize
             ).awaitResponse()
             if (response.isSuccessful && response.body()?.isSuccess() == true) {
-                NetworkResult.Success(mapper.toDomainList(response.body()?.data ?: emptyList()))
+                Resource.Success(
+                    (response.body()?.data ?: emptyList()).map { it.toGiphyImage() }
+                )
             } else {
-                NetworkResult.Error(KotlinNullPointerException("No data found"))
+                Resource.Error(KotlinNullPointerException("No data found"))
             }
         } catch (e: Exception) {
             Logger.getGlobal().severe(e.toString())
-            NetworkResult.Error(e)
+            Resource.Error(e)
         }
 
         return@withContext response

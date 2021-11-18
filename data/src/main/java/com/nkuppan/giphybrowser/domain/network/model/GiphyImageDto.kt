@@ -1,6 +1,8 @@
 package com.nkuppan.giphybrowser.domain.network.model
 
 import com.google.gson.annotations.SerializedName
+import com.nkuppan.giphybrowser.domain.model.GiphyImage
+import com.nkuppan.giphybrowser.domain.model.GiphyImageAttributes
 
 /**
  * GIPHY's images details and different formats image source
@@ -20,7 +22,18 @@ data class GiphyImageDto(
     val source: String,
     @SerializedName("images")
     val images: GiphyImagesListDto
-)
+) {
+    fun toGiphyImage(): GiphyImage {
+        return GiphyImage(
+            id = id,
+            title = title,
+            type = type,
+            url = url,
+            original = images.original.toGiphyImageAttributes(),
+            thumbnail = images.fixedHeight.toGiphyImageAttributes()
+        )
+    }
+}
 
 /**
  * GIPHY's images list with different formats
@@ -50,4 +63,12 @@ data class GiphyImageAttributesDto(
     val size: String,
     @SerializedName("url")
     val url: String
-)
+) {
+    fun toGiphyImageAttributes(): GiphyImageAttributes {
+        return GiphyImageAttributes(
+            height = height,
+            width = width,
+            url = url
+        )
+    }
+}

@@ -1,7 +1,7 @@
 package com.nkuppan.giphybrowser.domain.usecase
 
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
-import com.nkuppan.giphybrowser.domain.model.NetworkResult
+import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 
 /**
@@ -23,7 +23,7 @@ class GifSearchUseCase(
         aQuery: String,
         aPage: Int,
         aPageSize: Int
-    ): NetworkResult<List<GiphyImage>> {
+    ): Resource<List<GiphyImage>> {
         return repository.getGifResponse(aQuery, aPage, aPageSize)
     }
 }

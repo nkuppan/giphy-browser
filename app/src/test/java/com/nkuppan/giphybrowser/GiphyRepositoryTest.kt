@@ -1,9 +1,8 @@
 package com.nkuppan.giphybrowser
 
 import com.google.common.truth.Truth.assertThat
-import com.nkuppan.giphybrowser.domain.model.NetworkResult
+import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.network.GiphyApiService
-import com.nkuppan.giphybrowser.domain.network.model.GiphyImageDtoMapper
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepositoryImpl
 import com.nkuppan.giphybrowser.utils.MockResponseFileReader
@@ -99,8 +98,8 @@ class GiphyRepositoryTest {
             PAGE_SIZE
         )
         // Assert
-        assertThat(response).isInstanceOf(NetworkResult.Success::class.java)
-        assertThat((response as NetworkResult.Success).data).isNotEmpty()
+        assertThat(response).isInstanceOf(Resource.Success::class.java)
+        assertThat((response as Resource.Success).data).isNotEmpty()
     }
 
     @Test
@@ -115,8 +114,8 @@ class GiphyRepositoryTest {
         )
 
         // Assert
-        assertThat(response).isInstanceOf(NetworkResult.Success::class.java)
-        val data = (response as NetworkResult.Success).data
+        assertThat(response).isInstanceOf(Resource.Success::class.java)
+        val data = (response as Resource.Success).data
         assertThat(data).isNotEmpty()
         assertThat(data[0].type).isEqualTo(GIF)
     }
@@ -133,8 +132,8 @@ class GiphyRepositoryTest {
         )
 
         //Assert
-        assertThat(response).isInstanceOf(NetworkResult.Success::class.java)
-        val data = (response as NetworkResult.Success).data
+        assertThat(response).isInstanceOf(Resource.Success::class.java)
+        val data = (response as Resource.Success).data
         assertThat(data).isNotEmpty()
     }
 
@@ -151,8 +150,8 @@ class GiphyRepositoryTest {
 
         // Assert
         // Assert
-        assertThat(response).isInstanceOf(NetworkResult.Success::class.java)
-        val data = (response as NetworkResult.Success).data
+        assertThat(response).isInstanceOf(Resource.Success::class.java)
+        val data = (response as Resource.Success).data
         assertThat(data).isNotEmpty()
         assertThat(data[0].type).isEqualTo(STICKER)
     }
