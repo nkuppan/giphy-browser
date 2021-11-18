@@ -42,6 +42,9 @@ class GiphyBrowserListFragment : BaseFragment() {
         }
     }
 
+    /**
+     * Using this search view model as a shared view model for multiple fragments
+     */
     private val searchViewModel: SearchViewModel by activityViewModels()
 
     private val adapter = GiphyListAdapter { giphyImage ->
