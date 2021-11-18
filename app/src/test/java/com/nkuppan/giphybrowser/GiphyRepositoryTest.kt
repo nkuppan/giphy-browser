@@ -1,6 +1,7 @@
 package com.nkuppan.giphybrowser
 
 import com.google.common.truth.Truth.assertThat
+import com.nkuppan.giphybrowser.domain.model.NetworkResult
 import com.nkuppan.giphybrowser.domain.network.GiphyApiService
 import com.nkuppan.giphybrowser.domain.network.model.GiphyImageDtoMapper
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
@@ -92,14 +93,14 @@ class GiphyRepositoryTest {
         // Assign
         setupMockResponse(GIF_SUCCESS_RESPONSE_FILE_NAME)
         // Act
-        val (success, response) = giphyRepository.getGifResponse(
+        val response = giphyRepository.getGifResponse(
             query = SEARCH_QUERY,
             PAGE,
             PAGE_SIZE
         )
         // Assert
-        assertThat(success).isTrue()
-        assertThat(response).isNotEmpty()
+        assertThat(response).isInstanceOf(NetworkResult.Success::class.java)
+        assertThat((response as NetworkResult.Success).data).isNotEmpty()
     }
 
     @Test
@@ -107,16 +108,17 @@ class GiphyRepositoryTest {
         // Assign
         setupMockResponse(GIF_SUCCESS_RESPONSE_FILE_NAME)
         // Act
-        val (success, response) = giphyRepository.getGifResponse(
+        val response = giphyRepository.getGifResponse(
             query = SEARCH_QUERY,
             PAGE,
             PAGE_SIZE
         )
 
         // Assert
-        assertThat(success).isTrue()
-        assertThat(response).isNotEmpty()
-        assertThat(response[0].type).isEqualTo(GIF)
+        assertThat(response).isInstanceOf(NetworkResult.Success::class.java)
+        val data = (response as NetworkResult.Success).data
+        assertThat(data).isNotEmpty()
+        assertThat(data[0].type).isEqualTo(GIF)
     }
 
     @Test
@@ -124,15 +126,16 @@ class GiphyRepositoryTest {
         // Assign
         setupMockResponse(STICKERS_SUCCESS_RESPONSE_FILE_NAME)
         // Act
-        val (success, response) = giphyRepository.getStickersResponse(
+        val response = giphyRepository.getStickersResponse(
             query = SEARCH_QUERY,
             PAGE,
             PAGE_SIZE
         )
 
-        // Assert
-        assertThat(success).isTrue()
-        assertThat(response).isNotEmpty()
+        //Assert
+        assertThat(response).isInstanceOf(NetworkResult.Success::class.java)
+        val data = (response as NetworkResult.Success).data
+        assertThat(data).isNotEmpty()
     }
 
     @Test
@@ -140,16 +143,18 @@ class GiphyRepositoryTest {
         // Assign
         setupMockResponse(STICKERS_SUCCESS_RESPONSE_FILE_NAME)
         // Act
-        val (success, response) = giphyRepository.getStickersResponse(
+        val response = giphyRepository.getStickersResponse(
             query = SEARCH_QUERY,
             PAGE,
             PAGE_SIZE
         )
 
         // Assert
-        assertThat(success).isTrue()
-        assertThat(response).isNotEmpty()
-        assertThat(response[0].type).isEqualTo(STICKER)
+        // Assert
+        assertThat(response).isInstanceOf(NetworkResult.Success::class.java)
+        val data = (response as NetworkResult.Success).data
+        assertThat(data).isNotEmpty()
+        assertThat(data[0].type).isEqualTo(STICKER)
     }
 
     companion object {
