@@ -21,6 +21,8 @@ Giphy Browser attempts to make use of the latest Android libraries and best prac
   * [Architecture Components](https://developer.android.com/jetpack/arch/) including **ViewModel**, **LiveData**, **Paging**, and **Navigation**
   * [ConstraintLayout](https://developer.android.com/reference/androidx/constraintlayout/widget/ConstraintLayout), [View Binding](https://developer.android.com/topic/libraries/view-binding) and more for layouts and UI
   * [Android KTX](https://developer.android.com/kotlin/ktx) for more fluent use of Android APIs
+  * [Navigation](https://developer.android.com/guide/navigation) to make the navigation easy
+  * [Data-Store](https://developer.android.com/topic/libraries/architecture/datastore) to store data asynchronously
 * [Retrofit](https://square.github.io/retrofit/)/[OkHttp](https://square.github.io/okhttp/) for networking
 * [Glide](https://github.com/bumptech/glide) for image loading
 * [Hilt-Android](https://dagger.dev/hilt/) for dependency injection

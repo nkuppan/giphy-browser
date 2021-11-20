@@ -20,6 +20,7 @@ import com.nkuppan.giphybrowser.core.extension.clearFocusAndHideKeyboard
 import com.nkuppan.giphybrowser.core.extension.showSnackBarMessage
 import com.nkuppan.giphybrowser.core.ui.fragment.BaseFragment
 import com.nkuppan.giphybrowser.databinding.FragmentGiphyBrowseListBinding
+import com.nkuppan.giphybrowser.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.domain.model.Type
 import com.nkuppan.giphybrowser.presentation.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +36,7 @@ class GiphyBrowserListFragment : BaseFragment() {
 
     private var binding: FragmentGiphyBrowseListBinding by autoCleared()
 
-    private val giphySearchViewModel: GiphyBrowserListViewModel by lazy {
+    private val giphySearchViewModel: GiphySearchViewModel<GiphyImage> by lazy {
         when (type) {
             Type.GIF -> viewModels<GifSearchViewModel>().value
             Type.STICKERS -> viewModels<StickersSearchViewModel>().value
@@ -109,7 +110,7 @@ class GiphyBrowserListFragment : BaseFragment() {
 
     private fun setupViewModel() {
         lifecycleScope.launch {
-            giphySearchViewModel.searchResult.collect {
+            giphySearchViewModel.getPagingResult().collect {
                 //Can remove the lifecycle as an input to the adapter submit data api. Since we are
                 //using the coroutine scope and flows
                 adapter.submitData(it)
