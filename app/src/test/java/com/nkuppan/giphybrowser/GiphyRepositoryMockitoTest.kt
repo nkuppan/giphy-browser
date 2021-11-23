@@ -2,10 +2,14 @@ package com.nkuppan.giphybrowser
 
 import com.google.common.truth.Truth.assertThat
 import com.nkuppan.giphybrowser.base.BaseCoroutineAndMockTest
-import com.nkuppan.giphybrowser.domain.model.GiphyImage
-import com.nkuppan.giphybrowser.domain.model.GiphyImageAttributes
 import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
+import com.nkuppan.giphybrowser.utils.MockConstants.Companion.FAKE_ID
+import com.nkuppan.giphybrowser.utils.MockConstants.Companion.FAKE_SEARCH_QUERY
+import com.nkuppan.giphybrowser.utils.MockConstants.Companion.GIF
+import com.nkuppan.giphybrowser.utils.MockConstants.Companion.STICKER
+import com.nkuppan.giphybrowser.utils.MockConstants.Companion.fakeGifImageObject
+import com.nkuppan.giphybrowser.utils.MockConstants.Companion.fakeStickerImageObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
@@ -108,33 +112,5 @@ class GiphyRepositoryMockitoTest : BaseCoroutineAndMockTest() {
         val error = gifResponseResult as Resource.Error
         assertThat(error).isNotNull()
         assertThat(error.exception).isNotNull()
-    }
-
-    companion object {
-
-        const val FAKE_ID = "1"
-        const val FAKE_SEARCH_QUERY = "Android"
-        const val GIF = "gif"
-        const val STICKER = "sticker"
-
-        private val fakeImageAttribute = GiphyImageAttributes("100", "100", "")
-
-        val fakeGifImageObject = GiphyImage(
-            FAKE_ID,
-            FAKE_SEARCH_QUERY,
-            GIF,
-            "",
-            fakeImageAttribute,
-            fakeImageAttribute
-        )
-
-        val fakeStickerImageObject = GiphyImage(
-            FAKE_ID,
-            FAKE_SEARCH_QUERY,
-            STICKER,
-            "",
-            fakeImageAttribute,
-            fakeImageAttribute
-        )
     }
 }

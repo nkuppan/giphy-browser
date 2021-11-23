@@ -15,6 +15,13 @@ class GiphyStickersPagingSource(
         val page = params.key ?: 0
         val pageSize = params.loadSize
         return when (val response = stickerSearchUseCase.invoke(query, page * pageSize, pageSize)) {
+            is Resource.Success -> {
+                LoadResult.Page(
+                    data = response.data,
+                    prevKey = if (page == 0) null else page.dec(),
+                    nextKey = if (response.data.isEmpty()) null else page.inc()
+                )
+            }
             is Resource.Error -> {
                 LoadResult.Error(
                     RuntimeException(
@@ -22,11 +29,11 @@ class GiphyStickersPagingSource(
                     )
                 )
             }
-            is Resource.Success -> {
-                LoadResult.Page(
-                    data = response.data,
-                    prevKey = if (page == 0) null else page.dec(),
-                    nextKey = if (response.data.isEmpty()) null else page.inc()
+            else -> {
+                LoadResult.Error(
+                    Exception(
+                        "Unknown exception with page = $page and page size = $pageSize"
+                    )
                 )
             }
         }
