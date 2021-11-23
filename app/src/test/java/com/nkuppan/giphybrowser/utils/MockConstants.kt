@@ -18,7 +18,7 @@ class MockConstants {
         val fakeGifImageObject = GiphyImage(
             FAKE_ID,
             FAKE_SEARCH_QUERY,
-            STICKER,
+            GIF,
             "",
             fakeImageAttribute,
             fakeImageAttribute
