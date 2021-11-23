@@ -1,25 +1,20 @@
 package com.nkuppan.giphybrowser
 
 import com.google.common.truth.Truth.assertThat
+import com.nkuppan.giphybrowser.base.BaseCoroutineAndMockTest
 import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.network.GiphyApiService
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepositoryImpl
 import com.nkuppan.giphybrowser.utils.MockResponseFileReader
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,28 +24,15 @@ import java.util.concurrent.TimeUnit
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class GiphyRepositoryTest {
-
-    @ExperimentalCoroutinesApi
-    private val testCoroutineDispatcher = TestCoroutineDispatcher()
+class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
 
     private lateinit var mockWebServer: MockWebServer
 
     private lateinit var giphyRepository: GiphyRepository
 
-    @After
-    fun tearDown() {
-        // reset main dispatcher to the original Main dispatcher
-        Dispatchers.resetMain()
-        testCoroutineDispatcher.cleanupTestCoroutines()
-    }
-
     @Before
-    fun setUp() {
-
-        Dispatchers.setMain(testCoroutineDispatcher)
-
-        MockitoAnnotations.initMocks(this)
+    override fun setUp() {
+        super.setUp()
 
         mockWebServer = MockWebServer()
         mockWebServer.start()

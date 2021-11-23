@@ -81,4 +81,5 @@ dependencies {
     testImplementation(Libs.AndroidX.Core.test)
     testImplementation(Libs.Kotlin.Coroutines.test)
     testImplementation(Libs.Mockito.core)
+    testImplementation(Libs.Mockito.ktx)
 }

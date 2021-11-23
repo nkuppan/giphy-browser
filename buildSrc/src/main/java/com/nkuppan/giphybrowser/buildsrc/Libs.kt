@@ -132,6 +132,7 @@ object Libs {
     }
 
     object Mockito {
-        const val core = "org.mockito:mockito-core:3.3.3"
+        const val core = "org.mockito:mockito-core:${Versions.Mockito.core}"
+        const val ktx = "org.mockito.kotlin:mockito-kotlin:${Versions.Mockito.ktx}"
     }
 }

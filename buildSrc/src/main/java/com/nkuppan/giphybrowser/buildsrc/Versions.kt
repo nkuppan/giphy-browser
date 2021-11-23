@@ -49,4 +49,9 @@ object Versions {
         const val okHttp = "4.9.1"
         const val retrofit = "2.9.0"
     }
+
+    object Mockito {
+        const val core = "3.3.3"
+        const val ktx = "4.0.0"
+    }
 }
