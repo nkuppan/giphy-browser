@@ -1,4 +1,4 @@
-package com.nkuppan.giphybrowser.domain.network.model
+package com.nkuppan.giphybrowser.data.network.model
 
 import com.google.gson.annotations.SerializedName
 import com.nkuppan.giphybrowser.domain.model.GiphyImage

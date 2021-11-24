@@ -6,7 +6,7 @@ fun String?.isValidQueryString(): Boolean {
         return false
     }
 
-    if (trim().length < 3) {
+    if (trim().length < MAX_QUERY_LENGTH) {
         return false
     }
 

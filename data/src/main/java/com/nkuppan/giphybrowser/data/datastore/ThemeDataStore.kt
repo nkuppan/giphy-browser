@@ -1,4 +1,4 @@
-package com.nkuppan.giphybrowser.domain.datastore
+package com.nkuppan.giphybrowser.data.datastore
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

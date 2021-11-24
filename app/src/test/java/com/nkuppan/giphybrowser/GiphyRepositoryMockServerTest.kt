@@ -3,9 +3,9 @@ package com.nkuppan.giphybrowser
 import com.google.common.truth.Truth.assertThat
 import com.nkuppan.giphybrowser.base.BaseCoroutineAndMockTest
 import com.nkuppan.giphybrowser.domain.model.Resource
-import com.nkuppan.giphybrowser.domain.network.GiphyApiService
+import com.nkuppan.giphybrowser.data.network.GiphyApiService
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
-import com.nkuppan.giphybrowser.domain.repository.GiphyRepositoryImpl
+import com.nkuppan.giphybrowser.data.repository.GiphyRepositoryImpl
 import com.nkuppan.giphybrowser.utils.MockResponseFileReader
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking

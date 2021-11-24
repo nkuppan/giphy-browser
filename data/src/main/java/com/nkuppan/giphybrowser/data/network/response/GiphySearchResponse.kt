@@ -1,7 +1,7 @@
-package com.nkuppan.giphybrowser.domain.network.response
+package com.nkuppan.giphybrowser.data.network.response
 
 import com.google.gson.annotations.SerializedName
-import com.nkuppan.giphybrowser.domain.network.model.GiphyImageDto
+import com.nkuppan.giphybrowser.data.network.model.GiphyImageDto
 
 /**
  * This is GIPHY's Gif or Stickers search API response model class with pagination information

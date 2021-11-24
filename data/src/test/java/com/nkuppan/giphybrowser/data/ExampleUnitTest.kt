@@ -1,4 +1,4 @@
-package com.nkuppan.giphybrowser.domain
+package com.nkuppan.giphybrowser.data
 
 import org.junit.Test
 

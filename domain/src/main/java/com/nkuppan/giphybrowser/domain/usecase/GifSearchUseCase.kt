@@ -3,6 +3,7 @@ package com.nkuppan.giphybrowser.domain.usecase
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
+import com.nkuppan.giphybrowser.domain.utils.isValidQueryString
 
 /**
  * This use case is a wrapper to call between repository and viewmodel. As per the clean
@@ -20,10 +21,15 @@ class GifSearchUseCase(
 ) {
 
     suspend operator fun invoke(
-        aQuery: String,
-        aPage: Int,
-        aPageSize: Int
+        query: String,
+        page: Int,
+        pageSize: Int
     ): Resource<List<GiphyImage>> {
-        return repository.getGifResponse(aQuery, aPage, aPageSize)
+
+        if (!query.isValidQueryString()) {
+            return Resource.Error(IllegalArgumentException("Invalid query param $query"))
+        }
+
+        return repository.getGifResponse(query, page, pageSize)
     }
 }

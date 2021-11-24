@@ -1,6 +1,6 @@
-package com.nkuppan.giphybrowser.domain.network
+package com.nkuppan.giphybrowser.data.network
 
-import com.nkuppan.giphybrowser.domain.network.response.GiphySearchResponse
+import com.nkuppan.giphybrowser.data.network.response.GiphySearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

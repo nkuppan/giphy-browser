@@ -1,6 +1,6 @@
 package com.nkuppan.giphybrowser.di
 
-import com.nkuppan.giphybrowser.domain.network.GiphyApiService
+import com.nkuppan.giphybrowser.data.network.GiphyApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

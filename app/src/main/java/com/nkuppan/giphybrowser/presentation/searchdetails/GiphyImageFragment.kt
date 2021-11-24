@@ -10,7 +10,7 @@ import com.nkuppan.giphybrowser.R
 import com.nkuppan.giphybrowser.core.extension.autoCleared
 import com.nkuppan.giphybrowser.core.ui.fragment.BaseFragment
 import com.nkuppan.giphybrowser.databinding.FragmentGiphyImageBinding
-import com.nkuppan.giphybrowser.domain.extension.loadNetworkImageWithStatusCallback
+import com.nkuppan.giphybrowser.data.extension.loadNetworkImageWithStatusCallback
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.utils.EMPTY_CHAR
 import dagger.hilt.android.AndroidEntryPoint

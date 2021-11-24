@@ -2,12 +2,12 @@ package com.nkuppan.giphybrowser.di
 
 import android.content.Context
 import com.nkuppan.giphybrowser.di.AppModule.dataStore
-import com.nkuppan.giphybrowser.domain.datastore.ThemeDataStore
-import com.nkuppan.giphybrowser.domain.network.GiphyApiService
+import com.nkuppan.giphybrowser.data.datastore.ThemeDataStore
+import com.nkuppan.giphybrowser.data.network.GiphyApiService
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
-import com.nkuppan.giphybrowser.domain.repository.GiphyRepositoryImpl
+import com.nkuppan.giphybrowser.data.repository.GiphyRepositoryImpl
 import com.nkuppan.giphybrowser.domain.repository.ThemeRepository
-import com.nkuppan.giphybrowser.domain.repository.ThemeRepositoryImpl
+import com.nkuppan.giphybrowser.data.repository.ThemeRepositoryImpl
 import com.nkuppan.giphybrowser.domain.usecase.GifSearchUseCase
 import com.nkuppan.giphybrowser.domain.usecase.StickerSearchUseCase
 import dagger.Module

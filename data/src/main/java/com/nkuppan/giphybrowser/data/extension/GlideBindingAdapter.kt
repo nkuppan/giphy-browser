@@ -1,4 +1,4 @@
-package com.nkuppan.giphybrowser.domain.extension
+package com.nkuppan.giphybrowser.data.extension
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.nkuppan.giphybrowser.domain.R
+import com.nkuppan.giphybrowser.data.R
 
 
 private fun loadErrorImage(imageView: ImageView) {

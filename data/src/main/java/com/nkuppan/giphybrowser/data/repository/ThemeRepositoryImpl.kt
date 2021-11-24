@@ -1,10 +1,11 @@
-package com.nkuppan.giphybrowser.domain.repository
+package com.nkuppan.giphybrowser.data.repository
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import com.nkuppan.giphybrowser.domain.R
-import com.nkuppan.giphybrowser.domain.datastore.ThemeDataStore
+import com.nkuppan.giphybrowser.data.R
+import com.nkuppan.giphybrowser.data.datastore.ThemeDataStore
 import com.nkuppan.giphybrowser.domain.model.Theme
+import com.nkuppan.giphybrowser.domain.repository.ThemeRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first

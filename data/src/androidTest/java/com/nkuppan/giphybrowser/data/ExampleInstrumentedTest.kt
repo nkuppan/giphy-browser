@@ -1,4 +1,4 @@
-package com.nkuppan.giphybrowser.domain
+package com.nkuppan.giphybrowser.data
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
