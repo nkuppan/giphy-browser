@@ -2,10 +2,10 @@ package com.nkuppan.giphybrowser
 
 import com.google.common.truth.Truth.assertThat
 import com.nkuppan.giphybrowser.base.BaseCoroutineAndMockTest
-import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.data.network.GiphyApiService
-import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.data.repository.GiphyRepositoryImpl
+import com.nkuppan.giphybrowser.domain.model.Resource
+import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.utils.MockResponseFileReader
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -45,7 +45,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
                     .build()
             )
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(GiphyApiService.BASE_URL)
+            .baseUrl(mockWebServer.url("/"))
             .build()
             .create()
 
@@ -55,21 +55,21 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
         )
     }
 
-    private fun setupMockResponse(aResponseFileName: String) {
+    private fun setupMockResponse(responseFileName: String) {
         val response = MockResponse()
             .setResponseCode(HttpURLConnection.HTTP_OK)
-            .setBody(MockResponseFileReader(aResponseFileName).content)
+            .setBody(MockResponseFileReader(responseFileName).content)
         mockWebServer.enqueue(response)
     }
 
     @Test
-    fun `read giphy success json response file`() {
+    fun readGiphySuccessJsonResponseFile() {
         val reader = MockResponseFileReader(GIF_SUCCESS_RESPONSE_FILE_NAME)
         assertThat(reader.content).isNotNull()
     }
 
     @Test
-    fun `fetch giphy gifs and check response Code 200 returned`() = runBlocking {
+    fun readGiphyGifSuccessJsonResponseFile() = runBlocking {
         // Assign
         setupMockResponse(GIF_SUCCESS_RESPONSE_FILE_NAME)
         // Act
@@ -84,7 +84,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun `fetch giphy gifs and check response value and type returned`() = runBlocking {
+    fun readGiphyGifSuccessJsonResponseFileWithResult() = runBlocking {
         // Assign
         setupMockResponse(GIF_SUCCESS_RESPONSE_FILE_NAME)
         // Act
@@ -102,7 +102,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun `fetch giphy stickers and check response Code 200 returned`() = runBlocking {
+    fun fetchGiphyStickersAndCheckResponse() = runBlocking {
         // Assign
         setupMockResponse(STICKERS_SUCCESS_RESPONSE_FILE_NAME)
         // Act
@@ -119,7 +119,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun `fetch giphy stickers and check response value and type returned`() = runBlocking {
+    fun fetchGiphyStickersAndCheckResponseAndResult() = runBlocking {
         // Assign
         setupMockResponse(STICKERS_SUCCESS_RESPONSE_FILE_NAME)
         // Act

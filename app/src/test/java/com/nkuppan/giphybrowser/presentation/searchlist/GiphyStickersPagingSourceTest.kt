@@ -35,11 +35,12 @@ class GiphyStickersPagingSourceTest : BaseCoroutineAndMockTest() {
         super.setUp()
         stickerSearchUseCase = StickerSearchUseCase(giphyRepository)
 
-        giphyStickersPagingSource = GiphyStickersPagingSource(FAKE_SEARCH_QUERY, stickerSearchUseCase)
+        giphyStickersPagingSource =
+            GiphyStickersPagingSource(FAKE_SEARCH_QUERY, stickerSearchUseCase)
     }
 
     @Test
-    fun `Check paging success result`() = runBlockingTest(testCoroutineDispatcher) {
+    fun checkPagingSuccessResult() = runBlockingTest(testCoroutineDispatcher) {
 
         whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 0, PAGE_SIZE)).thenReturn(
             Resource.Success(giphyStickerMockData)
@@ -63,49 +64,54 @@ class GiphyStickersPagingSourceTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun `Check paging success result with multiple pages`() =
-        runBlockingTest(testCoroutineDispatcher) {
+    fun checkPagingSuccessResultWithMultiplePages() = runBlockingTest(testCoroutineDispatcher) {
 
-            whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 0, PAGE_SIZE)).thenReturn(
-                Resource.Success(giphyStickerMockData)
-            )
+        whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 0, PAGE_SIZE)).thenReturn(
+            Resource.Success(giphyStickerMockData)
+        )
 
-            //First page validation
-            val firstPageResult = giphyStickersPagingSource.load(
-                PagingSource.LoadParams.Refresh(
-                    key = null,
-                    loadSize = 2,
-                    placeholdersEnabled = false
-                )
+        //First page validation
+        val firstPageResult = giphyStickersPagingSource.load(
+            PagingSource.LoadParams.Refresh(
+                key = null,
+                loadSize = 2,
+                placeholdersEnabled = false
             )
+        )
 
-            Truth.assertThat(firstPageResult).isEqualTo(
-                PagingSource.LoadResult.Page(
-                    data = giphyStickerMockData,
-                    prevKey = null,
-                    nextKey = 1
-                )
+        Truth.assertThat(firstPageResult).isEqualTo(
+            PagingSource.LoadResult.Page(
+                data = giphyStickerMockData,
+                prevKey = null,
+                nextKey = 1
             )
+        )
 
-            whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 1 * PAGE_SIZE, PAGE_SIZE)).thenReturn(
-                Resource.Success(giphyStickerMockData)
+        whenever(
+            giphyRepository.getStickersResponse(
+                FAKE_SEARCH_QUERY,
+                1 * PAGE_SIZE,
+                PAGE_SIZE
             )
+        ).thenReturn(
+            Resource.Success(giphyStickerMockData)
+        )
 
-            //Second page validation
-            val secondPageResult = giphyStickersPagingSource.load(
-                PagingSource.LoadParams.Refresh(
-                    key = 1,
-                    loadSize = 2,
-                    placeholdersEnabled = false
-                )
+        //Second page validation
+        val secondPageResult = giphyStickersPagingSource.load(
+            PagingSource.LoadParams.Refresh(
+                key = 1,
+                loadSize = 2,
+                placeholdersEnabled = false
             )
+        )
 
-            Truth.assertThat(secondPageResult).isEqualTo(
-                PagingSource.LoadResult.Page(
-                    data = giphyStickerMockData,
-                    prevKey = 0,
-                    nextKey = 2
-                )
+        Truth.assertThat(secondPageResult).isEqualTo(
+            PagingSource.LoadResult.Page(
+                data = giphyStickerMockData,
+                prevKey = 0,
+                nextKey = 2
             )
-        }
+        )
+    }
 }

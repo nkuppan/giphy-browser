@@ -38,7 +38,7 @@ class GiphyGifPagingSourceTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun `Check paging success result`() = runBlockingTest(testCoroutineDispatcher) {
+    fun checkPagingSuccessResult() = runBlockingTest(testCoroutineDispatcher) {
 
         whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 0, 2)).thenReturn(
             Resource.Success(giphyGifMockData)
@@ -62,49 +62,48 @@ class GiphyGifPagingSourceTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun `Check paging success result with multiple pages`() =
-        runBlockingTest(testCoroutineDispatcher) {
+    fun checkPagingSuccessResultWithMultiplePages() = runBlockingTest(testCoroutineDispatcher) {
 
-            whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 0, PAGE_SIZE)).thenReturn(
-                Resource.Success(giphyGifMockData)
-            )
+        whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 0, PAGE_SIZE)).thenReturn(
+            Resource.Success(giphyGifMockData)
+        )
 
-            //First page validation
-            val firstPageResult = giphyGifPagingSource.load(
-                PagingSource.LoadParams.Refresh(
-                    key = null,
-                    loadSize = 2,
-                    placeholdersEnabled = false
-                )
+        //First page validation
+        val firstPageResult = giphyGifPagingSource.load(
+            PagingSource.LoadParams.Refresh(
+                key = null,
+                loadSize = 2,
+                placeholdersEnabled = false
             )
+        )
 
-            assertThat(firstPageResult).isEqualTo(
-                PagingSource.LoadResult.Page(
-                    data = giphyGifMockData,
-                    prevKey = null,
-                    nextKey = 1
-                )
+        assertThat(firstPageResult).isEqualTo(
+            PagingSource.LoadResult.Page(
+                data = giphyGifMockData,
+                prevKey = null,
+                nextKey = 1
             )
+        )
 
-            whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 2, PAGE_SIZE)).thenReturn(
-                Resource.Success(giphyGifMockData)
-            )
+        whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 2, PAGE_SIZE)).thenReturn(
+            Resource.Success(giphyGifMockData)
+        )
 
-            //Second page validation
-            val secondPageResult = giphyGifPagingSource.load(
-                PagingSource.LoadParams.Refresh(
-                    key = 1,
-                    loadSize = 2,
-                    placeholdersEnabled = false
-                )
+        //Second page validation
+        val secondPageResult = giphyGifPagingSource.load(
+            PagingSource.LoadParams.Refresh(
+                key = 1,
+                loadSize = 2,
+                placeholdersEnabled = false
             )
+        )
 
-            assertThat(secondPageResult).isEqualTo(
-                PagingSource.LoadResult.Page(
-                    data = giphyGifMockData,
-                    prevKey = 0,
-                    nextKey = 2
-                )
+        assertThat(secondPageResult).isEqualTo(
+            PagingSource.LoadResult.Page(
+                data = giphyGifMockData,
+                prevKey = 0,
+                nextKey = 2
             )
-        }
+        )
+    }
 }

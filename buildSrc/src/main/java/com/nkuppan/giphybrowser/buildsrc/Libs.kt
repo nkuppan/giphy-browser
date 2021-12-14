@@ -54,6 +54,16 @@ object Libs {
                 "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
         }
 
+        object Hilt {
+            const val compiler = "androidx.hilt:hilt-compiler:${Versions.AndroidX.hilt}"
+            const val work = "androidx.hilt:hilt-work:${Versions.AndroidX.hilt}"
+        }
+
+        object DataStore {
+            const val preferences =
+                "androidx.datastore:datastore-preferences:${Versions.AndroidX.dataStore}"
+        }
+
         object Room {
             const val runtime = "androidx.room:room-runtime:${Versions.AndroidX.room}"
             const val compiler = "androidx.room:room-compiler:${Versions.AndroidX.room}"
@@ -73,16 +83,6 @@ object Libs {
                 "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}"
 
             const val test = "androidx.navigation:navigation-testing:${Versions.AndroidX.navigation}"
-        }
-
-        object Hilt {
-            const val compiler = "androidx.hilt:hilt-compiler:${Versions.AndroidX.hilt}"
-            const val work = "androidx.hilt:hilt-work:${Versions.AndroidX.hilt}"
-        }
-
-        object DataStore {
-            const val preferences =
-                "androidx.datastore:datastore-preferences:${Versions.AndroidX.dataStore}"
         }
 
         object Test {
