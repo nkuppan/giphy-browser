@@ -15,13 +15,12 @@ class GiphyBrowserApplication : BaseApplication() {
     @Inject
     lateinit var themeRepository: ThemeRepository
 
-    @DelicateCoroutinesApi
     override fun onCreate() {
         super.onCreate()
         setupTheme()
     }
 
-    @DelicateCoroutinesApi
+    @OptIn(DelicateCoroutinesApi::class)
     private fun setupTheme() {
         GlobalScope.launch {
             themeRepository.applyTheme(this, Dispatchers.Main)

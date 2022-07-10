@@ -8,6 +8,9 @@
       <module name="giphy-browser.buildSrc.test" target="11" />
       <module name="giphy-browser.core" target="11" />
       <module name="giphy-browser.data" target="11" />
+      <module name="giphy-browser.domain" target="11" />
+      <module name="giphy-browser.domain.main" target="11" />
+      <module name="giphy-browser.domain.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

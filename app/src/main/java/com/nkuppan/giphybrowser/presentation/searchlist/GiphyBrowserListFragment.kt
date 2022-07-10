@@ -98,7 +98,7 @@ class GiphyBrowserListFragment : BaseBindingFragment<FragmentGiphyBrowseListBind
 
     private fun setupViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 giphySearchViewModel.getPagingResult().collect {
                     //Can remove the lifecycle as an input to the adapter submit data api. Since we are
                     //using the coroutine scope and flows
