@@ -22,12 +22,12 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-        
-      - name: Run ktlint
-        run: ./gradlew ktlint
 
-      - name: Run Android lint
+      - name: Run Kotlin Lint Check
+        run: ./gradlew kotlinLintCheck
+
+      - name: Run Android Lint
         run: ./gradlew lintDebug
 
-      - name: Run unit tests
+      - name: Run Unit Tests
         run: ./gradlew testDebugUnitTest
