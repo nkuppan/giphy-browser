@@ -4,14 +4,14 @@ import com.google.common.truth.Truth.assertThat
 import com.nkuppan.giphybrowser.base.BaseCoroutineAndMockTest
 import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.FAKE_ID
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.FAKE_SEARCH_QUERY
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.GIF
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.STICKER
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.fakeGifImageObject
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.fakeStickerImageObject
+import com.nkuppan.giphybrowser.utils.FAKE_ID
+import com.nkuppan.giphybrowser.utils.FAKE_SEARCH_QUERY
+import com.nkuppan.giphybrowser.utils.GIF
+import com.nkuppan.giphybrowser.utils.STICKER
+import com.nkuppan.giphybrowser.utils.fakeGifImageObject
+import com.nkuppan.giphybrowser.utils.fakeStickerImageObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.kotlin.whenever
@@ -23,7 +23,7 @@ class GiphyRepositoryMockitoTest : BaseCoroutineAndMockTest() {
     private lateinit var giphyRepository: GiphyRepository
 
     @Test
-    fun searchGiphyGifQueryWithEmptyResult() = runBlockingTest(testCoroutineDispatcher) {
+    fun searchGiphyGifQueryWithEmptyResult() = runTest {
         whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 1, 20)).thenReturn(
             Resource.Success(listOf())
         )
@@ -36,7 +36,7 @@ class GiphyRepositoryMockitoTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun searchGiphyGifQueryWithResult() = runBlockingTest(testCoroutineDispatcher) {
+    fun searchGiphyGifQueryWithResult() = runTest {
         whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 1, 20)).thenReturn(
             Resource.Success(listOf(fakeGifImageObject))
         )
@@ -56,7 +56,7 @@ class GiphyRepositoryMockitoTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun searchGiphyGifQueryWithErrorResult() = runBlockingTest(testCoroutineDispatcher) {
+    fun searchGiphyGifQueryWithErrorResult() = runTest {
         whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 1, 20)).thenReturn(
             Resource.Error(KotlinNullPointerException())
         )
@@ -69,7 +69,7 @@ class GiphyRepositoryMockitoTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun searchGiphyStickerQueryWithEmptyResult() = runBlockingTest(testCoroutineDispatcher) {
+    fun searchGiphyStickerQueryWithEmptyResult() = runTest {
         whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 1, 20)).thenReturn(
             Resource.Success(listOf())
         )
@@ -82,7 +82,7 @@ class GiphyRepositoryMockitoTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun searchGiphyStickerQueryWithResult() = runBlockingTest(testCoroutineDispatcher) {
+    fun searchGiphyStickerQueryWithResult() = runTest {
         whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 1, 20)).thenReturn(
             Resource.Success(listOf(fakeStickerImageObject))
         )
@@ -102,7 +102,7 @@ class GiphyRepositoryMockitoTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun searchGiphyStickerQueryWithErrorResult() = runBlockingTest(testCoroutineDispatcher) {
+    fun searchGiphyStickerQueryWithErrorResult() = runTest {
         whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 1, 20)).thenReturn(
             Resource.Error(KotlinNullPointerException())
         )

@@ -8,7 +8,7 @@ import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.utils.MockResponseFileReader
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -51,7 +51,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
 
         giphyRepository = GiphyRepositoryImpl(
             giphyApiService,
-            testCoroutineDispatcher
+            testDispatcherRule.dispatcher
         )
     }
 
@@ -69,7 +69,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun readGiphyGifSuccessJsonResponseFile() = runBlocking {
+    fun readGiphyGifSuccessJsonResponseFile() = runTest {
         // Assign
         setupMockResponse(GIF_SUCCESS_RESPONSE_FILE_NAME)
         // Act
@@ -84,7 +84,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun readGiphyGifSuccessJsonResponseFileWithResult() = runBlocking {
+    fun readGiphyGifSuccessJsonResponseFileWithResult() = runTest {
         // Assign
         setupMockResponse(GIF_SUCCESS_RESPONSE_FILE_NAME)
         // Act
@@ -102,7 +102,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun fetchGiphyStickersAndCheckResponse() = runBlocking {
+    fun fetchGiphyStickersAndCheckResponse() = runTest {
         // Assign
         setupMockResponse(STICKERS_SUCCESS_RESPONSE_FILE_NAME)
         // Act
@@ -119,7 +119,7 @@ class GiphyRepositoryMockServerTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun fetchGiphyStickersAndCheckResponseAndResult() = runBlocking {
+    fun fetchGiphyStickersAndCheckResponseAndResult() = runTest {
         // Assign
         setupMockResponse(STICKERS_SUCCESS_RESPONSE_FILE_NAME)
         // Act

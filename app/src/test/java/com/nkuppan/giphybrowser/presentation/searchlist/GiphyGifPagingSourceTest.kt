@@ -7,11 +7,11 @@ import com.nkuppan.giphybrowser.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.domain.usecase.GifSearchUseCase
-import com.nkuppan.giphybrowser.utils.MockConstants
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.FAKE_SEARCH_QUERY
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.PAGE_SIZE
+import com.nkuppan.giphybrowser.utils.FAKE_SEARCH_QUERY
+import com.nkuppan.giphybrowser.utils.PAGE_SIZE
+import com.nkuppan.giphybrowser.utils.getGiphyGifObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.kotlin.whenever
@@ -20,8 +20,8 @@ import org.mockito.kotlin.whenever
 class GiphyGifPagingSourceTest : BaseCoroutineAndMockTest() {
 
     private val giphyGifMockData = arrayListOf<GiphyImage>().apply {
-        add(MockConstants.getGiphyGifObject("1"))
-        add(MockConstants.getGiphyGifObject("2"))
+        add(getGiphyGifObject("1"))
+        add(getGiphyGifObject("2"))
     }
 
     @Mock
@@ -38,7 +38,7 @@ class GiphyGifPagingSourceTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun checkPagingSuccessResult() = runBlockingTest(testCoroutineDispatcher) {
+    fun checkPagingSuccessResult() = runTest {
 
         whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 0, 2)).thenReturn(
             Resource.Success(giphyGifMockData)
@@ -62,7 +62,7 @@ class GiphyGifPagingSourceTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun checkPagingSuccessResultWithMultiplePages() = runBlockingTest(testCoroutineDispatcher) {
+    fun checkPagingSuccessResultWithMultiplePages() = runTest {
 
         whenever(giphyRepository.getGifResponse(FAKE_SEARCH_QUERY, 0, PAGE_SIZE)).thenReturn(
             Resource.Success(giphyGifMockData)

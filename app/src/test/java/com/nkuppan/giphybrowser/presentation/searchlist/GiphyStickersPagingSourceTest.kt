@@ -7,11 +7,11 @@ import com.nkuppan.giphybrowser.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.domain.model.Resource
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import com.nkuppan.giphybrowser.domain.usecase.StickerSearchUseCase
-import com.nkuppan.giphybrowser.utils.MockConstants
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.FAKE_SEARCH_QUERY
-import com.nkuppan.giphybrowser.utils.MockConstants.Companion.PAGE_SIZE
+import com.nkuppan.giphybrowser.utils.FAKE_SEARCH_QUERY
+import com.nkuppan.giphybrowser.utils.PAGE_SIZE
+import com.nkuppan.giphybrowser.utils.getGiphyStickerObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.kotlin.whenever
@@ -20,8 +20,8 @@ import org.mockito.kotlin.whenever
 class GiphyStickersPagingSourceTest : BaseCoroutineAndMockTest() {
 
     private val giphyStickerMockData = arrayListOf<GiphyImage>().apply {
-        add(MockConstants.getGiphyStickerObject("1"))
-        add(MockConstants.getGiphyStickerObject("2"))
+        add(getGiphyStickerObject("1"))
+        add(getGiphyStickerObject("2"))
     }
 
     @Mock
@@ -40,7 +40,7 @@ class GiphyStickersPagingSourceTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun checkPagingSuccessResult() = runBlockingTest(testCoroutineDispatcher) {
+    fun checkPagingSuccessResult() = runTest {
 
         whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 0, PAGE_SIZE)).thenReturn(
             Resource.Success(giphyStickerMockData)
@@ -64,7 +64,7 @@ class GiphyStickersPagingSourceTest : BaseCoroutineAndMockTest() {
     }
 
     @Test
-    fun checkPagingSuccessResultWithMultiplePages() = runBlockingTest(testCoroutineDispatcher) {
+    fun checkPagingSuccessResultWithMultiplePages() = runTest {
 
         whenever(giphyRepository.getStickersResponse(FAKE_SEARCH_QUERY, 0, PAGE_SIZE)).thenReturn(
             Resource.Success(giphyStickerMockData)
