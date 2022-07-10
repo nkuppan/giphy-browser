@@ -2,53 +2,71 @@ import com.nkuppan.giphybrowser.buildsrc.Libs
 import com.nkuppan.giphybrowser.buildsrc.Versions
 
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs.kotlin'
-    id 'dagger.hilt.android.plugin'
+    id("com.android.application")
+    kotlin("android")
+    kotlin("kapt")
+    id("androidx.navigation.safeargs.kotlin")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk = Versions.compileSdk
 
     defaultConfig {
 
-        applicationId "com.nkuppan.giphybrowser"
+        applicationId = "com.nkuppan.giphybrowser"
 
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
+        minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
 
-        versionCode 1
-        versionName "1.0"
+        versionCode = Versions.versionCode
+        versionName = Versions.versionName
 
-        testInstrumentationRunner Libs.AndroidX.Test.instrumentationRunner
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+
+        testInstrumentationRunner = Libs.AndroidX.Test.instrumentationRunner
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
+        // Treat all Kotlin warnings as errors (disabled by default)
+        allWarningsAsErrors = properties["warningsAsErrors"] as? Boolean ?: false
+
+        freeCompilerArgs = freeCompilerArgs + listOf(
+            "-opt-in=kotlin.RequiresOptIn",
+            // Enable experimental coroutines APIs, including Flow
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlinx.coroutines.FlowPreview",
+            "-opt-in=kotlin.Experimental"
+        )
+        
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
-        viewBinding true
-        dataBinding true
+        viewBinding = true
+        dataBinding = true
     }
 }
 
 dependencies {
 
-    implementation project(":core")
-    implementation project(":data")
-    implementation project(":domain")
+    implementation(project(":core"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
 
     implementation(Libs.Glide.core)
     kapt(Libs.Glide.compiler)

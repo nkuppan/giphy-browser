@@ -1,40 +1,46 @@
 import com.nkuppan.giphybrowser.buildsrc.Libs
 import com.nkuppan.giphybrowser.buildsrc.Versions
+import java.io.FileInputStream
+import java.util.*
 
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
-def apikeyPropertiesFile = rootProject.file("keys.properties")
-def apikeyProperties = new Properties()
-apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+val apikeyProperties = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "keys.properties")))
+}
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk = Versions.compileSdk
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
-        testInstrumentationRunner Libs.AndroidX.Test.instrumentationRunner
+        minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
+        testInstrumentationRunner = Libs.AndroidX.Test.instrumentationRunner
 
-        buildConfigField "String", "GIPHY_API_KEY", apikeyProperties['GIPHY_API_KEY']
+        buildConfigField(
+            "String",
+            "GIPHY_API_KEY",
+            ((apikeyProperties["GIPHY_API_KEY"] ?: "") as String)
+        )
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
-        viewBinding true
-        dataBinding true
+        viewBinding = true
+        dataBinding = true
     }
 }
 dependencies {
-    implementation project(":domain")
+    implementation(project(":domain"))
 
     implementation(Libs.AndroidX.appCompat)
 

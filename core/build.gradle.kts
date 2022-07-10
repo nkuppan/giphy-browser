@@ -2,28 +2,28 @@ import com.nkuppan.giphybrowser.buildsrc.Libs
 import com.nkuppan.giphybrowser.buildsrc.Versions
 
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
+    id("com.android.library")
+    kotlin("android")
+    kotlin("kapt")
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk = Versions.compileSdk
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
-        testInstrumentationRunner Libs.AndroidX.Test.instrumentationRunner
+        minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
+        testInstrumentationRunner = Libs.AndroidX.Test.instrumentationRunner
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
-        viewBinding true
-        dataBinding true
+        viewBinding = true
+        dataBinding = true
     }
 }
 

@@ -1,8 +1,8 @@
 import com.nkuppan.giphybrowser.buildsrc.Libs
 
 plugins {
-    id 'java-library'
-    id 'kotlin'
+    id("java-library")
+    id("kotlin")
 }
 
 java {
