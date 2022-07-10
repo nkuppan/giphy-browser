@@ -4,46 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintSet
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.nkuppan.giphybrowser.R
-import com.nkuppan.giphybrowser.core.extension.autoCleared
-import com.nkuppan.giphybrowser.core.ui.fragment.BaseFragment
+import com.nkuppan.giphybrowser.core.extension.loadNetworkImageWithStatusCallback
+import com.nkuppan.giphybrowser.core.ui.fragment.BaseBindingFragment
 import com.nkuppan.giphybrowser.databinding.FragmentGiphyImageBinding
-import com.nkuppan.giphybrowser.data.extension.loadNetworkImageWithStatusCallback
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
-import com.nkuppan.giphybrowser.utils.EMPTY_CHAR
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.logging.Logger
 
 @AndroidEntryPoint
-class GiphyImageFragment : BaseFragment() {
+class GiphyImageFragment : BaseBindingFragment<FragmentGiphyImageBinding>() {
 
     private val args: GiphyImageFragmentArgs by navArgs()
 
     private val image: GiphyImage by lazy { args.image }
 
-    private var binding: FragmentGiphyImageBinding by autoCleared()
-
-    private val set = ConstraintSet()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentGiphyImageBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbar.setNavigationIcon(R.drawable.ic_back_navigation)
-
-        setSupportedActionBar(binding.toolbar)
-
-        setTitle(EMPTY_CHAR)
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         loadImage()
     }
@@ -62,5 +44,13 @@ class GiphyImageFragment : BaseFragment() {
                 Logger.getGlobal().warning("Status of the glide loading $status")
             }
         }
+    }
+
+    override fun inflateLayout(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentGiphyImageBinding {
+        return FragmentGiphyImageBinding.inflate(inflater, container, false)
     }
 }

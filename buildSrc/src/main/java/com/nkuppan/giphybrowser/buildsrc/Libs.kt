@@ -54,11 +54,6 @@ object Libs {
                 "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
         }
 
-        object Hilt {
-            const val compiler = "androidx.hilt:hilt-compiler:${Versions.AndroidX.hilt}"
-            const val work = "androidx.hilt:hilt-work:${Versions.AndroidX.hilt}"
-        }
-
         object DataStore {
             const val preferences =
                 "androidx.datastore:datastore-preferences:${Versions.AndroidX.dataStore}"
@@ -113,10 +108,12 @@ object Libs {
         const val truth = "com.google.truth:truth:${Versions.Google.truth}"
 
         object Hilt {
-            const val compiler = "com.google.dagger:hilt-android-compiler:${Versions.Google.hilt}"
             const val android = "com.google.dagger:hilt-android:${Versions.Google.hilt}"
+            const val hiltCompiler =
+                "com.google.dagger:hilt-android-compiler:${Versions.Google.hilt}"
             const val androidGradlePlugin =
                 "com.google.dagger:hilt-android-gradle-plugin:${Versions.Google.hilt}"
+            const val test = "com.google.dagger:hilt-android-testing:${Versions.Google.hilt}"
         }
     }
 

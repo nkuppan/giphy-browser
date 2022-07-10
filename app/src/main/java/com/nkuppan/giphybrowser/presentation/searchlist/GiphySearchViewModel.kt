@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 /**
- * This is a common viewmodel class for the paging search source [PagingData].
+ * This is a common view model class for the paging search source [PagingData].
  */
 abstract class GiphySearchViewModel<T : Any> : BaseViewModel() {
 

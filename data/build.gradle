@@ -8,19 +8,25 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def apikeyPropertiesFile = rootProject.file("keys.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdk Versions.compileSdk
     defaultConfig {
         minSdk Versions.minSdk
         targetSdk Versions.targetSdk
         testInstrumentationRunner Libs.AndroidX.Test.instrumentationRunner
+
+        buildConfigField "String", "GIPHY_API_KEY", apikeyProperties['GIPHY_API_KEY']
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
         viewBinding true
@@ -28,17 +34,24 @@ android {
     }
 }
 dependencies {
-    implementation project(":core")
     implementation project(":domain")
 
-    implementation(Libs.Glide.core)
-    annotationProcessor(Libs.Glide.compiler)
+    implementation(Libs.AndroidX.appCompat)
+
+    implementation(Libs.Kotlin.stdlib)
+    implementation(Libs.Kotlin.Coroutines.core)
+    implementation(Libs.Kotlin.Coroutines.android)
 
     implementation(Libs.AndroidX.Paging.runtime)
 
     implementation(Libs.Google.Hilt.android)
-    kapt(Libs.Google.Hilt.compiler)
-    kapt(Libs.AndroidX.Hilt.compiler)
+    kapt(Libs.Google.Hilt.hiltCompiler)
+
+    implementation(Libs.Square.okHttp)
+    implementation(Libs.Square.Retrofit.retrofit)
+    implementation(Libs.Square.Retrofit.gsonConverter)
+
+    implementation(Libs.AndroidX.DataStore.preferences)
 
     testImplementation(Libs.Google.truth)
     testImplementation(Libs.AndroidX.Test.runner)

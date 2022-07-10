@@ -11,10 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.nkuppan.giphybrowser.R
 import com.nkuppan.giphybrowser.core.extension.EventObserver
-import com.nkuppan.giphybrowser.core.extension.autoCleared
 import com.nkuppan.giphybrowser.core.extension.clearFocusAndHideKeyboard
 import com.nkuppan.giphybrowser.core.extension.showSnackBarMessage
-import com.nkuppan.giphybrowser.core.ui.fragment.BaseFragment
+import com.nkuppan.giphybrowser.core.ui.fragment.BaseBindingFragment
 import com.nkuppan.giphybrowser.databinding.FragmentGiphySearchBinding
 import com.nkuppan.giphybrowser.domain.model.Type
 import com.nkuppan.giphybrowser.presentation.theme.ThemeViewModel
@@ -23,25 +22,11 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class GiphySearchFragment : BaseFragment() {
-
-    private var binding: FragmentGiphySearchBinding by autoCleared()
+class GiphySearchFragment : BaseBindingFragment<FragmentGiphySearchBinding>() {
 
     private val themeViewModel: ThemeViewModel by activityViewModels()
 
     private val searchViewModel: SearchViewModel by activityViewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentGiphySearchBinding.inflate(inflater, container, false)
-        binding.searchViewModel = searchViewModel
-        binding.themeViewModel = themeViewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,7 +63,7 @@ class GiphySearchFragment : BaseFragment() {
         )
 
         themeViewModel.openThemeDialog.observe(viewLifecycleOwner, EventObserver {
-            lifecycleScope.launch {
+            viewLifecycleOwner.lifecycleScope.launch {
                 val theme = themeViewModel.theme.first()
                 findNavController().navigate(
                     GiphySearchFragmentDirections.actionGiphySearchToTheme(
@@ -95,5 +80,19 @@ class GiphySearchFragment : BaseFragment() {
         } else {
             binding.root.showSnackBarMessage(R.string.enter_valid_query_string)
         }
+    }
+
+    override fun inflateLayout(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentGiphySearchBinding {
+        return FragmentGiphySearchBinding.inflate(inflater, container, false)
+    }
+
+    override fun bindData(binding: FragmentGiphySearchBinding) {
+        binding.searchViewModel = searchViewModel
+        binding.themeViewModel = themeViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
     }
 }

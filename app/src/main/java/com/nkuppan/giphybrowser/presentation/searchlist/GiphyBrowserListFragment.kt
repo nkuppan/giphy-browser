@@ -9,32 +9,30 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import com.nkuppan.giphybrowser.R
 import com.nkuppan.giphybrowser.core.extension.EventObserver
-import com.nkuppan.giphybrowser.core.extension.autoCleared
 import com.nkuppan.giphybrowser.core.extension.clearFocusAndHideKeyboard
 import com.nkuppan.giphybrowser.core.extension.showSnackBarMessage
-import com.nkuppan.giphybrowser.core.ui.fragment.BaseFragment
+import com.nkuppan.giphybrowser.core.ui.fragment.BaseBindingFragment
 import com.nkuppan.giphybrowser.databinding.FragmentGiphyBrowseListBinding
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.domain.model.Type
 import com.nkuppan.giphybrowser.presentation.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class GiphyBrowserListFragment : BaseFragment() {
+class GiphyBrowserListFragment : BaseBindingFragment<FragmentGiphyBrowseListBinding>() {
 
     private val args: GiphyBrowserListFragmentArgs by navArgs()
 
     private val type: Type by lazy { args.type }
-
-    private var binding: FragmentGiphyBrowseListBinding by autoCleared()
 
     private val giphySearchViewModel: GiphySearchViewModel<GiphyImage> by lazy {
         when (type) {
@@ -49,23 +47,13 @@ class GiphyBrowserListFragment : BaseFragment() {
     private val searchViewModel: SearchViewModel by activityViewModels()
 
     private val adapter = GiphyListAdapter { giphyImage ->
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             findNavController().navigate(
                 GiphyBrowserListFragmentDirections.actionGiphyBrowseListToGiphyImageFragment(
                     giphyImage
                 )
             )
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentGiphyBrowseListBinding.inflate(inflater, container, false)
-        binding.searchViewModel = searchViewModel
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -109,11 +97,13 @@ class GiphyBrowserListFragment : BaseFragment() {
     }
 
     private fun setupViewModel() {
-        lifecycleScope.launch {
-            giphySearchViewModel.getPagingResult().collect {
-                //Can remove the lifecycle as an input to the adapter submit data api. Since we are
-                //using the coroutine scope and flows
-                adapter.submitData(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                giphySearchViewModel.getPagingResult().collect {
+                    //Can remove the lifecycle as an input to the adapter submit data api. Since we are
+                    //using the coroutine scope and flows
+                    adapter.submitData(it)
+                }
             }
         }
     }
@@ -160,5 +150,18 @@ class GiphyBrowserListFragment : BaseFragment() {
         } else {
             binding.root.showSnackBarMessage(R.string.enter_valid_query_string)
         }
+    }
+
+    override fun inflateLayout(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentGiphyBrowseListBinding {
+        return FragmentGiphyBrowseListBinding.inflate(inflater, container, false)
+    }
+
+    override fun bindData(binding: FragmentGiphyBrowseListBinding) {
+        super.bindData(binding)
+        binding.searchViewModel = searchViewModel
     }
 }

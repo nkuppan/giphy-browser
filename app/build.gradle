@@ -36,7 +36,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
         viewBinding true
@@ -51,13 +51,18 @@ dependencies {
     implementation project(":domain")
 
     implementation(Libs.Glide.core)
-    annotationProcessor(Libs.Glide.compiler)
+    kapt(Libs.Glide.compiler)
 
     implementation(Libs.AndroidX.Paging.runtime)
 
     implementation(Libs.Google.Hilt.android)
-    kapt(Libs.Google.Hilt.compiler)
-    kapt(Libs.AndroidX.Hilt.compiler)
+    kapt(Libs.Google.Hilt.hiltCompiler)
+
+    implementation(Libs.Square.okHttp)
+    implementation(Libs.Square.Retrofit.retrofit)
+    implementation(Libs.Square.Retrofit.gsonConverter)
+
+    implementation(Libs.AndroidX.DataStore.preferences)
 
     /**
      * Android Testing Related Library

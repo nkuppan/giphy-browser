@@ -4,11 +4,8 @@ import com.nkuppan.giphybrowser.buildsrc.Versions
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
-
-def apikeyPropertiesFile = rootProject.file("keys.properties")
-def apikeyProperties = new Properties()
-apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
     compileSdk Versions.compileSdk
@@ -16,18 +13,17 @@ android {
         minSdk Versions.minSdk
         targetSdk Versions.targetSdk
         testInstrumentationRunner Libs.AndroidX.Test.instrumentationRunner
-
-        buildConfigField "String", "GIPHY_API_KEY", apikeyProperties['GIPHY_API_KEY']
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 }
 
@@ -53,11 +49,8 @@ dependencies {
 
     api(Libs.Google.material)
 
-    api(Libs.Square.okHttp)
-    api(Libs.Square.Retrofit.retrofit)
-    api(Libs.Square.Retrofit.gsonConverter)
-
-    api(Libs.AndroidX.DataStore.preferences)
+    implementation(Libs.Glide.core)
+    kapt(Libs.Glide.compiler)
 
     testImplementation(Libs.AndroidX.Test.runner)
     androidTestImplementation(Libs.AndroidX.Test.JUnit.ktx)

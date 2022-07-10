@@ -1,9 +1,9 @@
 package com.nkuppan.giphybrowser.data.repository
 
-import com.nkuppan.giphybrowser.core.BuildConfig
+import com.nkuppan.giphybrowser.data.BuildConfig
+import com.nkuppan.giphybrowser.data.network.GiphyApiService
 import com.nkuppan.giphybrowser.domain.model.GiphyImage
 import com.nkuppan.giphybrowser.domain.model.Resource
-import com.nkuppan.giphybrowser.data.network.GiphyApiService
 import com.nkuppan.giphybrowser.domain.repository.GiphyRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
