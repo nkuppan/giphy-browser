@@ -43,8 +43,8 @@ object Versions {
 
     object Google {
         const val truth = "1.1.3"
-        const val material = "1.5.0-alpha01"
-        const val hilt = "2.38.1"
+        const val material = "1.6.0"
+        const val hilt = "2.42"
     }
 
     object Square {

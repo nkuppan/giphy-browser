@@ -89,7 +89,6 @@ dependencies {
 
     androidTestImplementation(Libs.AndroidX.Test.JUnit.ktx)
     androidTestImplementation(Libs.AndroidX.Test.Espresso.core)
-    androidTestImplementation(Libs.AndroidX.Test.Espresso.contrib)
     androidTestImplementation(Libs.AndroidX.Navigation.test)
     androidTestImplementation(Libs.AndroidX.Test.runner)
     androidTestImplementation(Libs.AndroidX.Test.rules)

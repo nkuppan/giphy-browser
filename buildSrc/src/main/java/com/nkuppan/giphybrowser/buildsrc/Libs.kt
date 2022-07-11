@@ -90,7 +90,7 @@ object Libs {
             }
 
             object JUnit {
-                const val core = "junit:junit:${Versions.AndroidX.Test.jUnit}"
+                const val core = "junit:junit:${Versions.AndroidX.Test.jUnitCore}"
                 const val ktx = "androidx.test.ext:junit-ktx:${Versions.AndroidX.Test.jUnit}"
             }
 

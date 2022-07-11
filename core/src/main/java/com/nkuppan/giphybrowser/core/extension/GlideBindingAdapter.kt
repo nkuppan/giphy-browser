@@ -23,7 +23,7 @@ private fun loadErrorImage(imageView: ImageView) {
         .into(imageView)
 }
 
-@BindingAdapter("app:loadNetworkImage")
+@BindingAdapter("loadNetworkImage")
 fun loadNetworkImage(imageView: ImageView, networkImageUrl: String?) {
 
     if (URLUtil.isValidUrl(networkImageUrl)) {
